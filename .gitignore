@@ -1,0 +1,30 @@
+# Unity Generated #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Settings/
+Assets/AssetStoreTools*
+
+# C# IDE Generated #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.sln
+*.suo
+*.user
+*.unityproj
+*.booproj
+
+# OS generated #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
