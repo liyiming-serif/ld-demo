@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(gameObject.GetComponent<Rigidbody2D>() != null) {
+		}
 	}
 }
