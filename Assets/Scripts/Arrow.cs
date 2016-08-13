@@ -12,6 +12,7 @@ public class Arrow : MonoBehaviour {
 	void Start() {
 		notched = true;
 		stuck = false;
+		Debug.Log(Engine.score);
 	}
 	
 	// Update is called once per frame
