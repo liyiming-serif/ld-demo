@@ -12,7 +12,7 @@ public class InputController : MonoBehaviour {
     private float bowMax = 10f;
 
     Rigidbody2D body;
-
+    public GameObject arrowObject; // attach from inspector
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +59,8 @@ public class InputController : MonoBehaviour {
     private void FireArrow(Vector2 origin, Vector2 dest, float power)
     {
         // TODO: insert your arrow shenanigans here
+        GameObject tmpArrow = (GameObject)Instantiate(arrowObject, origin + dest.normalized * 2, Quaternion.identity);
+        tmpArrow.GetComponent<ArrowV2>().Init(origin + dest.normalized * 2, dest, power);
         Debug.Log("Shooting arrow from " + origin + " to " + dest + " with " + power + " power.");
     }
 }
