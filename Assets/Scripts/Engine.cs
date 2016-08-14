@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Engine : MonoBehaviour {
+public class Engine : MonoBehaviour{
+	public static Engine singleton;
+	public static int score{ get; set;}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Awake(){
+		singleton = this;
+		score = 0;
+		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 	}
 }
