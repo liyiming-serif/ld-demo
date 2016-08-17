@@ -38,7 +38,7 @@ public class Arrow : MonoBehaviour {
 			stuck = true;
 			foreach(Component rb in gameObject.GetComponents<Rigidbody2D>())
 				Destroy(rb);
-			//TODO: tell engine to reload bow and decrement ammo.
+			Engine.singleton.Notch();
 		}
 	}
 }
