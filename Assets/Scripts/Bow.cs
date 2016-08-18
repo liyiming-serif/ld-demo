@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Bow : MonoBehaviour {
 
     Vector3 offset;
     Arrow arrow;
+
+    // the bowstring is a line renderer
+    List<Vector3> bowStringPosition;
+    LineRenderer bowStringLinerenderer;
 
     //
     // void Start()
@@ -63,5 +67,19 @@ public class Bow : MonoBehaviour {
     public void ShootArrow()
     {
 
+    }
+
+    //
+    // public void drawBowString()
+    //
+    // set the bowstrings line renderer position
+    //
+
+    public void DrawString()
+    {
+        bowStringLinerenderer = bowString.GetComponent<LineRenderer>();
+        bowStringLinerenderer.SetPosition(0, bowStringPosition[0]);
+        bowStringLinerenderer.SetPosition(1, stringPullout);
+        bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);
     }
 }
