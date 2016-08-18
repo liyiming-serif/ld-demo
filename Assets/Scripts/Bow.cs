@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Bow : MonoBehaviour {
 
+    GameObject arrow;
+    Vector3 offset;
+
     //
     // void Start()
     //
@@ -10,7 +13,7 @@ public class Bow : MonoBehaviour {
     //
     void Start()
     {
-
+        offset = new Vector3(0, 0, 0);
     }
 
     //
@@ -24,22 +27,40 @@ public class Bow : MonoBehaviour {
     }
 
     //
-    // public void spawnArrow(bool)
+    // public void SpawnArrow()
     //
     // Spawn a new arrow
     //
-    // bool: the taget is hit.
+    public void SpawnArrow()
+    {
+        //TODO sound effect
+        // instantiate a new arrow
+        transform.localRotation = Quaternion.identity;
+        arrow = Instantiate(Resources.Load("Arrow"), Vector3.zero, Quaternion.identity) as GameObject;
+        arrow.name = "arrow";
+        arrow.transform.localScale = transform.localScale;
+        arrow.transform.localPosition = transform.position + offset;
+        arrow.transform.localRotation = transform.localRotation;
+        arrow.transform.parent = transform;
+        //TODO transmit the reference
+    }
+
+    // public void PullString()
     //
-    public void spawnArrow(bool isHit)
+    // When the player pulls out the string
+    //
+    public void PullString()
     {
 
     }
 
-    // public void pullString()
     //
-    // When the player pulls out the string
+    // public void ShootArrow()
     //
-    public void pullString()
+    // player released the arrow
+    // get the bows rotation and acc.
+    //
+    public void ShootArrow()
     {
 
     }
