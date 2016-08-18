@@ -46,9 +46,9 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.useWorldSpace = false;
         bowStringLinerenderer.material = Resources.Load("Materials/bowStringMaterial") as Material;
         bowStringPosition = new List<Vector3>();
-        bowStringPosition.Add(new Vector3(-0.35f, 1.43f, 2f));
-        bowStringPosition.Add(new Vector3(-0.35f, -0.06f, 2f));
-        bowStringPosition.Add(new Vector3(-0.35f, -1.32f, 2f));
+        bowStringPosition.Add(new Vector3(-0.35f, 1.0f, 2f));
+        bowStringPosition.Add(new Vector3(0f, -0.06f, 2f));
+        bowStringPosition.Add(new Vector3(-0.35f, -1.0f, 2f));
         bowStringLinerenderer.SetPosition(0, bowStringPosition[0]);
         bowStringLinerenderer.SetPosition(1, bowStringPosition[1]);
         bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);

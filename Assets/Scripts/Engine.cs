@@ -152,7 +152,7 @@ public class Engine : MonoBehaviour{
                 }
 
                 // in any case: update the bowstring line renderer
-                //bow.DrawString();
+                bow.DrawString();
                 break;
             case States.instructions:
                 break;
