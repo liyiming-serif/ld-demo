@@ -15,11 +15,11 @@ public class Target : MonoBehaviour {
 	
 	}
 
+	//increment points when hit by arrow
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		if(other.gameObject.tag == "Projectile") {
-			Engine.score += value;
-
+			Engine.singleton.score += value;
 		}
 	}
 }

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class Engine : MonoBehaviour{
 	public static Engine singleton;
 	
-    public static int score{ get; set;} // score TODO remove static
-	public static int ammo{ get; set; } // amount of arrows TODO remove static
+    public int score{ get; set;} // score
+	public int ammo{ get; set; } // amount of arrows
 
     public Bow bow;
     public States gameState;
@@ -51,19 +51,13 @@ public class Engine : MonoBehaviour{
     //
     // public void Notch()
     //
-    // This method is called from the arrow script
-    // and sets the points
+    // This method decrements the ammo and reloads the bow
     //
     public void Notch(){
         Debug.Log("notched");
 		ammo--;
+		bow.SpawnArrow();
 	}
-    
-    public void Notch(int points)
-    {
-        score += points;
-        Notch();
-    }
 
     //
     // void ResetGame()
