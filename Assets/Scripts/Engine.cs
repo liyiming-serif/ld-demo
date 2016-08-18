@@ -44,7 +44,7 @@ public class Engine : MonoBehaviour{
 		singleton = this;
 		score = 0;
         ammo = 20;
-        gameState = States.menu;
+        gameState = States.game;
 		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 	}
 
@@ -85,15 +85,15 @@ public class Engine : MonoBehaviour{
     // 
     // starts game can be triggered by main menu
     //
-    public void StateGame()
-    {
-        gameState = States.game;
-    }
+    //public void StateGame()
+    //{
+    //    gameState = States.game;
+    //}
 
-    public void showScore()
-    {
-        scoreText.text = "Score: " + score.ToString();
-    }
+    //public void showScore()
+    //{
+    //    scoreText.text = "Score: " + score.ToString();
+    //}
 
 
     public void showArrows()
@@ -116,8 +116,8 @@ public class Engine : MonoBehaviour{
 
             case States.game:
                 // set UI related stuff
-                showArrows();
-                showScore();
+                //showArrows();
+                //showScore();
 
                 // game is steered via mouse
                 // (also works with touch on android)
@@ -153,6 +153,7 @@ public class Engine : MonoBehaviour{
                     // shot the arrow (rigid body physics)
                     bow.ShootArrow();
                 }
+
                 // in any case: update the bowstring line renderer
                 bow.DrawString();
                 break;
