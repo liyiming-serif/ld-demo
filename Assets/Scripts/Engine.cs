@@ -12,9 +12,11 @@ public class Engine : MonoBehaviour{
     States gameState;
 
     // Sound effects
-    public AudioClip stringPull;
-    public AudioClip stringRelease;
-    public AudioClip arrowSwoosh;
+    [SerializeField]
+    AudioClip stringPull;
+    [SerializeField]
+    AudioClip stringRelease;
+    AudioClip arrowSwoosh;
 
     // Use this for initialisation
     void Awake(){
