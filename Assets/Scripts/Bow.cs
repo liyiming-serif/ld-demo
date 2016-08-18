@@ -10,6 +10,10 @@ public class Bow : MonoBehaviour {
     List<Vector3> bowStringPosition;
     LineRenderer bowStringLinerenderer;
 
+    // position of the line renderers middle part 
+    Vector3 stringPullout;
+    Vector3 stringRestPosition = new Vector3(-0.44f, -0.06f, 2f);
+
     //
     // void Start()
     //

@@ -8,9 +8,8 @@ public class Engine : MonoBehaviour{
     public static int score{ get; set;} // score TODO remove static
 	public static int ammo{ get; set; } // amount of arrows TODO remove static
 
-    [SerializeField]
-    Bow bow;
-    States gameState;
+    public Bow bow;
+    public States gameState;
 
     // referene to the text fields of game UI
     public Text arrowText;
@@ -39,9 +38,6 @@ public class Engine : MonoBehaviour{
     bool arrowShot;
     bool arrowPrepared;
 
-    // position of the line renderers middle part 
-    Vector3 stringPullout;
-    Vector3 stringRestPosition = new Vector3(-0.44f, -0.06f, 2f);
 
     // Use this for initialisation
     void Awake(){
