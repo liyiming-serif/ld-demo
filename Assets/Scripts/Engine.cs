@@ -48,6 +48,11 @@ public class Engine : MonoBehaviour{
 		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 	}
 
+    void Start()
+    {
+        Debug.Log("start the engine");
+        bow.SpawnArrow();
+    }
     //
     // public void Notch()
     //
@@ -70,15 +75,15 @@ public class Engine : MonoBehaviour{
     //
     // Resets data
     //
-    void ResetGame()
-    {
-        score = 0;
-        ammo = 20;
-        if(GameObject.Find("arrow") == null)
-        {
-            bow.SpawnArrow();   
-        }
-    }
+    //void ResetGame()
+    //{
+    //    score = 0;
+    //    ammo = 20;
+    //    if(GameObject.Find("arrow") == null)
+    //    {
+    //        bow.SpawnArrow();   
+    //    }
+    //}
 
     //
     // public void StartGame()
@@ -120,7 +125,6 @@ public class Engine : MonoBehaviour{
                 //showScore();
 
                 // game is steered via mouse
-                // (also works with touch on android)
                 if (Input.GetMouseButton(0))
                 {
                     // the player pulls the string
