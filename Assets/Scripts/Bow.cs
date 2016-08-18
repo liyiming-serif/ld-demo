@@ -17,13 +17,8 @@ public class Bow : MonoBehaviour {
     // to determine the string pullout
     float arrowStartX;
     float length;
-    
-    // some status vars
-    bool arrowShot;
-    bool arrowPrepared;
-    
-    Vector3 offset;
 
+    Vector3 offset;
 
     // the bowstring is a line renderer
     List<Vector3> bowStringPosition;
@@ -40,8 +35,8 @@ public class Bow : MonoBehaviour {
     //
     void Start()
     {
-        arrowShot = false;
-        arrowPrepared = false;
+        Engine.singleton.arrowShot = false;
+        Engine.singleton.arrowPrepared = false;
 
         offset = new Vector3(0, 0, 0);
 
@@ -103,10 +98,9 @@ public class Bow : MonoBehaviour {
     public void PullString()
     {
         mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(mouseRay, out rayHit, 1000f);
-        Debug.Log(rayHit.point);
-        if (Physics.Raycast(mouseRay, out rayHit, 1f) && arrowShot == false)
+        if (Physics.Raycast(mouseRay, out rayHit, 1000f) && Engine.singleton.arrowShot == false)
         {
+            //TODO max turning radius should not be over +\-90.
             // determine the position on the screen
             posX = rayHit.point.x;
             posY = rayHit.point.y;
@@ -124,7 +118,7 @@ public class Bow : MonoBehaviour {
             arrowPosition.x = (arrowStartX - length);
             arrow.transform.localPosition = arrowPosition;
         }
-        arrowPrepared = true;
+        Engine.singleton.arrowPrepared = true;
     }
 
     //
@@ -135,8 +129,9 @@ public class Bow : MonoBehaviour {
     //
     public void ShootArrow()
     {
+        arrow.transform.parent = Engine.singleton.transform;
         arrow.FireArrow(Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z)) * new Vector2(25f * length, 0));
-        arrowPrepared = false;
+        Engine.singleton.arrowPrepared = false;
         stringPullout = stringRestPosition;
     }
 
