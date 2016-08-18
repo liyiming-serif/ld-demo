@@ -1,15 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class States : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-}
+﻿// game states
+public enum States
+{
+    menu,
+    instructions,
+    game,
+    over,
+    hiscore,
+};
