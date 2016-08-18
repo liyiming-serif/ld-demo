@@ -103,9 +103,7 @@ public class Bow : MonoBehaviour {
     public void PullString()
     {
         mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(mouseRay, out rayHit, 1000f);
-        Debug.Log(rayHit.point);
-        if (Physics.Raycast(mouseRay, out rayHit, 1f) && arrowShot == false)
+        if (Physics.Raycast(mouseRay, out rayHit, 1000f) && arrowShot == false)
         {
             // determine the position on the screen
             posX = rayHit.point.x;
