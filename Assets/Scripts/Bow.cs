@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class Bow : MonoBehaviour {
 
-    public GameObject bowString;
     public Arrow arrow;
 
+    
     // to determine the mouse position, we need a raycast
     Ray mouseRay;
     RaycastHit rayHit;
@@ -18,8 +18,9 @@ public class Bow : MonoBehaviour {
     float arrowStartX;
     float length;
 
-    Vector3 offset;
-
+    // dynamically render the string line
+    public GameObject bowString;
+    
     // the bowstring is a line renderer
     List<Vector3> bowStringPosition;
     LineRenderer bowStringLinerenderer;
@@ -38,8 +39,6 @@ public class Bow : MonoBehaviour {
         Engine.singleton.arrowShot = false;
         Engine.singleton.arrowPrepared = false;
 
-        offset = new Vector3(0, 0, 0);
-
         // setup the line renderer representing the bowstring
         bowStringLinerenderer = bowString.AddComponent<LineRenderer>();
         bowStringLinerenderer.SetVertexCount(3);
@@ -47,9 +46,9 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.useWorldSpace = false;
         bowStringLinerenderer.material = Resources.Load("Materials/bowStringMaterial") as Material;
         bowStringPosition = new List<Vector3>();
-        bowStringPosition.Add(new Vector3(-0.44f, 1.43f, 2f));
-        bowStringPosition.Add(new Vector3(-0.44f, -0.06f, 2f));
-        bowStringPosition.Add(new Vector3(-0.43f, -1.32f, 2f));
+        bowStringPosition.Add(new Vector3(-0.35f, 1.43f, 2f));
+        bowStringPosition.Add(new Vector3(-0.35f, -0.06f, 2f));
+        bowStringPosition.Add(new Vector3(-0.35f, -1.32f, 2f));
         bowStringLinerenderer.SetPosition(0, bowStringPosition[0]);
         bowStringLinerenderer.SetPosition(1, bowStringPosition[1]);
         bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);
@@ -85,10 +84,13 @@ public class Bow : MonoBehaviour {
         }
         arrow.transform.name = "arrow";
         arrow.transform.localScale = transform.localScale;
-        arrow.transform.localPosition = transform.position + offset;
+        arrow.transform.localPosition = transform.position + new Vector3(0.7f, 0, 0);
         arrow.transform.localRotation = transform.localRotation;
         arrow.transform.parent = transform;
-        //TODO transmit the reference
+        Engine.singleton.arrowShot = false;
+        Engine.singleton.arrowPrepared = false;
+        // subtract one arrow
+        Engine.singleton.ammo -= 1;
     }
 
     // public void PullString()
@@ -122,12 +124,12 @@ public class Bow : MonoBehaviour {
     }
 
     //
-    // public void ShootArrow()
+    // public void FireArrow()
     //
     // player released the arrow
     // get the bows rotation and acc.
     //
-    public void ShootArrow()
+    public void FireArrow()
     {
         arrow.transform.parent = Engine.singleton.transform;
         arrow.FireArrow(Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z)) * new Vector2(25f * length, 0));

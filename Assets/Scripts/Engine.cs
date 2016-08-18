@@ -148,7 +148,7 @@ public class Engine : MonoBehaviour{
                         arrowSwooshSoundPlayed = true;
                     }
                     // shot the arrow (rigid body physics)
-                    bow.ShootArrow();
+                    bow.FireArrow();
                 }
 
                 // in any case: update the bowstring line renderer
