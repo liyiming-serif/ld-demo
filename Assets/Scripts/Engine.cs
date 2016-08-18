@@ -24,12 +24,17 @@ public class Engine : MonoBehaviour{
     // This method is called from the arrow script
     // and sets the points
     //
-    public void Notch(int points){
-        score += points;
+    public void Notch(){
         Debug.Log("notched");
 		ammo--;
 	}
     
+    public void Notch(int points)
+    {
+        score += points;
+        Notch();
+    }
+
     //
     // void ResetGame()
     //
