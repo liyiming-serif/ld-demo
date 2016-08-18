@@ -35,8 +35,8 @@ public class Engine : MonoBehaviour{
     float length;
 
     // some status vars
-    bool arrowShot;
-    bool arrowPrepared;
+    public bool arrowShot { get; set; }
+    public bool arrowPrepared { get; set; }
 
 
     // Use this for initialisation
@@ -50,7 +50,6 @@ public class Engine : MonoBehaviour{
 
     void Start()
     {
-        Debug.Log("start the engine");
         bow.SpawnArrow();
     }
     //
