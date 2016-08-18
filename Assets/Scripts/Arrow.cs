@@ -2,30 +2,30 @@
 using System.Collections;
 
 public class Arrow : MonoBehaviour {
-	Rigidbody2D body;
+	Rigidbody2D body; //rigidbody once arrow is fired
 	Vector2 v; //velocity once rigidbody is attached
-	//flags to track the state of the arrow
-	//bool notched;
-	bool stuck;
+
+	bool hit; //flag to check if the arrow has hit anything
+
+	AudioSource speaker;
+	[SerializeField]
+	AudioClip whiz; //sound of the arrow getting launched
+	[SerializeField]
+	AudioClip thunk; //sound of the arrow hitting ANY barrier
 
 	// Use this for initialization
 	void Start() {
-		//notched = true;
-		stuck = false;
+		hit = false;
+		speaker = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
 	void Update() {
-		/*listen for when arrow has been fired
-		if(gameObject.GetComponent<Rigidbody2D>()!=null && notched==true) {
-			notched = false;
-			StartCoroutine(TrackAngle());
-		}*/
 	}
 
 	//control arrow's image based on trajectory. stops when arrow sticks.
 	IEnumerator TrackAngle() {
-		while(stuck == false) {
+		while(hit == false) {
 			v = gameObject.GetComponent<Rigidbody2D>().velocity;
 			float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
 			gameObject.transform.eulerAngles = new Vector3(0,0,angle);
@@ -35,18 +35,23 @@ public class Arrow : MonoBehaviour {
 
 	//arrow is fired from bow
 	public void FireArrow(Vector2 initVelocity) {
-		body = gameObject.AddComponent<Rigidbody2D>();
-		body.AddForce(initVelocity, ForceMode2D.Impulse);
-		StartCoroutine(TrackAngle());
+		if(body == null) {
+			speaker.PlayOneShot(whiz);
+			body = gameObject.AddComponent<Rigidbody2D>();
+			body.velocity = initVelocity;
+			StartCoroutine(TrackAngle());
+		}
 	}
 
 	//runs when arrow hits barrier
 	void OnCollisionEnter2D(Collision2D other) {
 		if(other.gameObject.tag == "Barrier") {
-			stuck = true;
-			foreach(Component rb in gameObject.GetComponents<Rigidbody2D>())
-				Destroy(rb);
+			hit = true;
+			speaker.PlayOneShot(thunk);
 			Engine.singleton.Notch();
+			if(body != null) {
+				Destroy(body);
+			}
 		}
 	}
 }
