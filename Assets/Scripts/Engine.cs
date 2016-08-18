@@ -9,10 +9,13 @@ public class Engine : MonoBehaviour{
     [SerializeField]
     Bow bow;
 
+    States gameState;
+
 	void Awake(){
 		singleton = this;
 		score = 0;
         ammo = 20;
+        gameState = States.menu;
 		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 	}
 
@@ -46,6 +49,16 @@ public class Engine : MonoBehaviour{
     public void setPoints(int points)
     {
         score += points;
+    }
+
+    //
+    // public void StartGame()
+    // 
+    // starts game can be triggered by main menu
+    //
+    public void StateGame()
+    {
+        gameState = States.game;
     }
 
 
