@@ -88,10 +88,10 @@ public class Engine : MonoBehaviour{
     //    gameState = States.game;
     //}
 
-    //public void showScore()
-    //{
-    //    scoreText.text = "Score: " + score.ToString();
-    //}
+    public void showScore()
+    {
+        scoreText.text = "Score: " + score.ToString();
+    }
 
 
     public void showArrows()

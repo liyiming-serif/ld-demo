@@ -59,16 +59,6 @@ public class Bow : MonoBehaviour {
     }
 
     //
-    // void Update()
-    //
-    // It is called on every frame
-    //
-    void Update()
-    {
-
-    }
-
-    //
     // public void SpawnArrow()
     //
     // Spawn a new arrow
@@ -78,6 +68,7 @@ public class Bow : MonoBehaviour {
         //TODO sound effect
         // instantiate a new arrow
         transform.localRotation = Quaternion.identity;
+        Debug.Log("here");
         arrow = (Instantiate(Resources.Load("arrowPrefab"), Vector3.zero, Quaternion.identity) as GameObject).GetComponent<Arrow>();
         if(arrow == null)
         {
@@ -90,8 +81,6 @@ public class Bow : MonoBehaviour {
         arrow.transform.parent = transform;
         Engine.singleton.arrowShot = false;
         Engine.singleton.arrowPrepared = false;
-        // subtract one arrow
-        Engine.singleton.ammo -= 1;
     }
 
     // public void PullString()

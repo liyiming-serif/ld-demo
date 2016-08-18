@@ -51,6 +51,8 @@ public class Arrow : MonoBehaviour {
 			Engine.singleton.Notch();
 			if(body != null) {
 				Destroy(body);
+				foreach(Component coll in GetComponents<Collider2D>())
+					Destroy(coll);
 			}
 		}
 	}
