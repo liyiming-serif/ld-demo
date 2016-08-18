@@ -18,9 +18,15 @@ public class Engine : MonoBehaviour{
         gameState = States.menu;
 		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 	}
-
-	public void Notch(){
-		Debug.Log("notched");
+    //
+    // public void Notch()
+    //
+    // This method is called from the arrow script
+    // and sets the points
+    //
+    public void Notch(int points){
+        score += points;
+        Debug.Log("notched");
 		ammo--;
 	}
     
@@ -36,19 +42,6 @@ public class Engine : MonoBehaviour{
         {
             bow.SpawnArrow();   
         }
-    }
-
-
-    //
-    // public void setPoints()
-    //
-    // This method is called from the arrow script
-    // and sets the points
-    //
-
-    public void setPoints(int points)
-    {
-        score += points;
     }
 
     //
