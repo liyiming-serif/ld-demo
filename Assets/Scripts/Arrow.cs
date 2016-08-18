@@ -7,11 +7,13 @@ public class Arrow : MonoBehaviour {
 	//flags to track the state of the arrow
 	//bool notched;
 	bool stuck;
+	AudioSource speaker;
 
 	// Use this for initialization
 	void Start() {
 		//notched = true;
 		stuck = false;
+		speaker = gameObject.GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
