@@ -3,21 +3,28 @@ using System.Collections;
 
 public class Engine : MonoBehaviour{
 	public static Engine singleton;
-	public static int score{ get; set;} // score
-	public static int ammo{ get; set; } // amount of arrows
+	
+    public static int score{ get; set;} // score TODO remove static
+	public static int ammo{ get; set; } // amount of arrows TODO remove static
 
     [SerializeField]
     Bow bow;
-
     States gameState;
 
-	void Awake(){
+    // Sound effects
+    public AudioClip stringPull;
+    public AudioClip stringRelease;
+    public AudioClip arrowSwoosh;
+
+    // Use this for initialisation
+    void Awake(){
 		singleton = this;
 		score = 0;
         ammo = 20;
         gameState = States.menu;
 		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 	}
+
     //
     // public void Notch()
     //
@@ -39,6 +46,7 @@ public class Engine : MonoBehaviour{
     // void ResetGame()
     //
     // Resets data
+    //
     void ResetGame()
     {
         score = 0;

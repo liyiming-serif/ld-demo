@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Bow : MonoBehaviour {
 
-    GameObject arrow;
     Vector3 offset;
+    Arrow arrow;
 
     //
     // void Start()
@@ -36,7 +36,7 @@ public class Bow : MonoBehaviour {
         //TODO sound effect
         // instantiate a new arrow
         transform.localRotation = Quaternion.identity;
-        arrow = Instantiate(Resources.Load("Arrow"), Vector3.zero, Quaternion.identity) as GameObject;
+        arrow = Instantiate(Resources.Load("arrowPrefab"), Vector3.zero, Quaternion.identity) as Arrow;
         arrow.name = "arrow";
         arrow.transform.localScale = transform.localScale;
         arrow.transform.localPosition = transform.position + offset;
