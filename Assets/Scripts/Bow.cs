@@ -47,7 +47,7 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.material = Resources.Load("Materials/bowStringMaterial") as Material;
         bowStringPosition = new List<Vector3>();
         bowStringPosition.Add(new Vector3(-0.35f, 1.0f, 2f));
-        bowStringPosition.Add(new Vector3(0f, -0.06f, 2f));
+        bowStringPosition.Add(new Vector3(-0.34f, -0.06f, 2f));
         bowStringPosition.Add(new Vector3(-0.35f, -1.0f, 2f));
         bowStringLinerenderer.SetPosition(0, bowStringPosition[0]);
         bowStringLinerenderer.SetPosition(1, bowStringPosition[1]);
@@ -55,6 +55,7 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.sortingLayerName = "Animator";
         bowStringLinerenderer.sortingOrder = 10;
         arrowStartX = 0.7f;
+        stringPullout = stringRestPosition;
     }
 
     //
@@ -84,7 +85,7 @@ public class Bow : MonoBehaviour {
         }
         arrow.transform.name = "arrow";
         arrow.transform.localScale = transform.localScale;
-        arrow.transform.localPosition = transform.position + new Vector3(0.7f, 0, 0);
+        arrow.transform.localPosition = transform.position;
         arrow.transform.localRotation = transform.localRotation;
         arrow.transform.parent = transform;
         Engine.singleton.arrowShot = false;
@@ -114,7 +115,7 @@ public class Bow : MonoBehaviour {
             length = mousePos.magnitude / 3f;
             length = Mathf.Clamp(length, 0, 1);
             // set the bowstrings line renderer
-            stringPullout = new Vector3(-(0.44f + length), -0.06f, 2f);
+            stringPullout = new Vector3(-(length - 0.2f), -0.06f, 2f);
             // set the arrows position
             Vector3 arrowPosition = arrow.transform.localPosition;
             arrowPosition.x = (arrowStartX - length);
