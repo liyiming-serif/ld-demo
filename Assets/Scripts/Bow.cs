@@ -4,22 +4,26 @@ using System.Collections.Generic;
 public class Bow : MonoBehaviour {
 
     public GameObject bowString;
+    public Arrow arrow;
 
     // to determine the mouse position, we need a raycast
-    private Ray mouseRay1;
-    private RaycastHit rayHit;
+    Ray mouseRay;
+    RaycastHit rayHit;
+
     // position of the raycast on the screen
-    private float posX;
-    private float posY;
+    float posX;
+    float posY;
+
     // to determine the string pullout
     float arrowStartX;
     float length;
+    
     // some status vars
     bool arrowShot;
     bool arrowPrepared;
     
     Vector3 offset;
-    Arrow arrow;
+
 
     // the bowstring is a line renderer
     List<Vector3> bowStringPosition;
@@ -36,6 +40,9 @@ public class Bow : MonoBehaviour {
     //
     void Start()
     {
+        arrowShot = false;
+        arrowPrepared = false;
+
         offset = new Vector3(0, 0, 0);
 
         // setup the line renderer representing the bowstring
@@ -51,6 +58,8 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.SetPosition(0, bowStringPosition[0]);
         bowStringLinerenderer.SetPosition(1, bowStringPosition[1]);
         bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);
+        bowStringLinerenderer.sortingLayerName = "Animator";
+        bowStringLinerenderer.sortingOrder = 10;
         arrowStartX = 0.7f;
     }
 
@@ -74,8 +83,12 @@ public class Bow : MonoBehaviour {
         //TODO sound effect
         // instantiate a new arrow
         transform.localRotation = Quaternion.identity;
-        arrow = Instantiate(Resources.Load("arrowPrefab"), Vector3.zero, Quaternion.identity) as Arrow;
-        arrow.name = "arrow";
+        arrow = (Instantiate(Resources.Load("arrowPrefab"), Vector3.zero, Quaternion.identity) as GameObject).GetComponent<Arrow>();
+        if(arrow == null)
+        {
+            Debug.Log("Instantiation failed.");
+        }
+        arrow.transform.name = "arrow";
         arrow.transform.localScale = transform.localScale;
         arrow.transform.localPosition = transform.position + offset;
         arrow.transform.localRotation = transform.localRotation;
@@ -89,11 +102,14 @@ public class Bow : MonoBehaviour {
     //
     public void PullString()
     {
-        if (Physics.Raycast(mouseRay1, out rayHit, 1000f) && arrowShot == false)
+        mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(mouseRay, out rayHit, 1000f);
+        Debug.Log(rayHit.point);
+        if (Physics.Raycast(mouseRay, out rayHit, 1f) && arrowShot == false)
         {
             // determine the position on the screen
-            posX = this.rayHit.point.x;
-            posY = this.rayHit.point.y;
+            posX = rayHit.point.x;
+            posY = rayHit.point.y;
             // set the bows angle to the arrow
             Vector2 mousePos = new Vector2(transform.position.x - posX, transform.position.y - posY);
             float angleZ = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
@@ -125,11 +141,10 @@ public class Bow : MonoBehaviour {
     }
 
     //
-    // public void drawBowString()
+    // public void DrawString()
     //
     // set the bowstrings line renderer position
     //
-
     public void DrawString()
     {
         bowStringLinerenderer = bowString.GetComponent<LineRenderer>();
