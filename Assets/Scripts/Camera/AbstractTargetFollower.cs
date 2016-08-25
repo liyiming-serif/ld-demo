@@ -1,104 +1,118 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace UnityStandardAssets.Cameras
+public abstract class AbstractTargetFollower : MonoBehaviour
 {
-    public abstract class AbstractTargetFollower : MonoBehaviour
+    public enum UpdatePrototype // The available methods of updating are: (ZK: Put in the front of a class)
     {
-        public enum UpdateType // The available methods of updating are:
+        FixedUpdate,    // for tracking rigidbodies (they don't move in Update)
+        LateUpdate,     // for tracking objects that are moved in Update
+        ManualUpdate    // user must call to update camera
+    };
+
+    [SerializeField]
+    protected Transform m_Target; // the target object to follow
+    [SerializeField]
+    private bool m_AutoTargetPlayer = true; // the rig automatically targets the object tagged with "Player"
+    [SerializeField]
+    private UpdatePrototype m_updateType; // stores the selected update type
+
+    protected Rigidbody targetRigidbody; // (ZK: This is missed. TODO What is this object used for? What happens if it's 2D.)
+
+    //
+    // protected virtual void Start()
+    // if auto targeting is on, find the object tagged with "Player"
+    // any class inheriting from this shouldcall base.Start() to perform this acction!s
+    // 
+    protected virtual void Start()
+    {
+        if (m_AutoTargetPlayer)
         {
-            FixedUpdate, // Update in FixedUpdate (for tracking rigidbodies).
-            LateUpdate, // Update in LateUpdate. (for tracking objects that are moved in Update)
-            ManualUpdate, // user must call to update camera
+            FindPlayerTarget();
         }
-
-        [SerializeField] protected Transform m_Target;            // The target object to follow
-        [SerializeField] private bool m_AutoTargetPlayer = true;  // Whether the rig should automatically target the player.
-        [SerializeField] private UpdateType m_UpdateType;         // stores the selected update type
-
-        protected Rigidbody targetRigidbody;
-
-
-        protected virtual void Start()
+        if(m_Target == null)
         {
-            // if auto targeting is used, find the object tagged "Player"
-            // any class inheriting from this should call base.Start() to perform this action!
-            if (m_AutoTargetPlayer)
-            {
-                FindAndTargetPlayer();
-            }
-            if (m_Target == null) return;
-            targetRigidbody = m_Target.GetComponent<Rigidbody>();
+            return;
         }
+        targetRigidbody = m_Target.GetComponent<Rigidbody>();
+    }
 
+    //
+    // public void SetTarget(Transform newTrans)
+    // can be overwritten
+    // 
+    public virtual void SetTarget(Transform newTrans)
+    {
+        m_Target = newTrans;
+    }
 
-        private void FixedUpdate()
+    //
+    // public void FindTarget()
+    // find the Gameobject tagged with "Player"
+    //
+    public void FindPlayerTarget()
+    {
+        var targetObject = GameObject.FindGameObjectWithTag("Player"); // First assign it to an implicit var in case of null (which will break GetComponent<>
+        if (targetObject)
         {
-            // we update from here if updatetype is set to Fixed, or in auto mode,
-            // if the target has a rigidbody, and isn't kinematic.
-            if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
-            {
-                FindAndTargetPlayer();
-            }
-            if (m_UpdateType == UpdateType.FixedUpdate)
-            {
-                FollowTarget(Time.deltaTime);
-            }
-        }
-
-
-        private void LateUpdate()
-        {
-            // we update from here if updatetype is set to Late, or in auto mode,
-            // if the target does not have a rigidbody, or - does have a rigidbody but is set to kinematic.
-            if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
-            {
-                FindAndTargetPlayer();
-            }
-            if (m_UpdateType == UpdateType.LateUpdate)
-            {
-                FollowTarget(Time.deltaTime);
-            }
-        }
-
-
-        public void ManualUpdate()
-        {
-            // we update from here if updatetype is set to Late, or in auto mode,
-            // if the target does not have a rigidbody, or - does have a rigidbody but is set to kinematic.
-            if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
-            {
-                FindAndTargetPlayer();
-            }
-            if (m_UpdateType == UpdateType.ManualUpdate)
-            {
-                FollowTarget(Time.deltaTime);
-            }
-        }
-
-        protected abstract void FollowTarget(float deltaTime);
-
-
-        public void FindAndTargetPlayer()
-        {
-            // auto target an object tagged player, if no target has been assigned
-            var targetObj = GameObject.FindGameObjectWithTag("Player");
-            if (targetObj)
-            {
-                SetTarget(targetObj.transform);
-            }
-        }
-
-
-        public virtual void SetTarget(Transform newTransform)
-        {
-            m_Target = newTransform;
-        }
-
-
-        public Transform Target
-        {
-            get { return m_Target; }
+            SetTarget(targetObject.transform);
         }
     }
+
+    // 
+    // private void FixedUpdate()
+    // if the target has a rigidbody, and isn't kinematic (moving in Update())
+    // Called by Unity
+    //
+    protected void FixedUpdate()
+    {
+        if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
+        {
+            FindPlayerTarget();
+        }
+        if (m_updateType == UpdatePrototype.FixedUpdate)
+        {
+            FollowTarget(Time.deltaTime);
+        }
+    }
+
+    //
+    // private void LateUpdate()
+    // Update this gameOjbect's position after the target has moved (have a rigidbody that set to kinematic)
+    // Or does not have a rigidbody (import Physics)
+    // Called by Unity
+    //
+    protected void LateUpdate()
+    {
+        if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
+        {
+            FindPlayerTarget();
+        }
+        if (m_updateType == UpdatePrototype.LateUpdate)
+        {
+            FollowTarget(Time.deltaTime);
+        }
+    }
+
+    //
+    // public void ManualUpdate()
+    // Update the camera's position only whenever it is called
+    //
+    public void ManualUpdate()
+    {
+        if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
+        {
+            FindPlayerTarget();
+        }
+        if (m_updateType == UpdatePrototype.ManualUpdate)
+        {
+            FollowTarget(Time.deltaTime);
+        }
+    }
+
+    //
+    // public void MoveTowardsTarget()
+    // Update this GameObject's (e.g. Camera) position.
+    //
+    protected abstract void FollowTarget(float deltaTime);
+
 }
