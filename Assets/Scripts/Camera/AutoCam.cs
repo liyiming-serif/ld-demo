@@ -53,55 +53,55 @@ namespace UnityStandardAssets.Cameras
                 }
                 m_CurrentTurnAmount = Mathf.SmoothDamp(m_CurrentTurnAmount, 1, ref m_TurnSpeedVelocityChange, m_SmoothTurnTime);
             }
-            else
-            {
-                // we're in 'follow rotation' mode, where the camera rig's rotation follows the object's rotation.
+            //else
+            //{
+            //    // we're in 'follow rotation' mode, where the camera rig's rotation follows the object's rotation.
 
-                // This section allows the camera to stop following the target's rotation when the target is spinning too fast.
-                // eg when a car has been knocked into a spin. The camera will resume following the rotation
-                // of the target when the target's angular velocity slows below the threshold.
-                var currentFlatAngle = Mathf.Atan2(targetForward.x, targetForward.z)*Mathf.Rad2Deg;
-                if (m_SpinTurnLimit > 0)
-                {
-                    var targetSpinSpeed = Mathf.Abs(Mathf.DeltaAngle(m_LastFlatAngle, currentFlatAngle))/deltaTime;
-                    var desiredTurnAmount = Mathf.InverseLerp(m_SpinTurnLimit, m_SpinTurnLimit*0.75f, targetSpinSpeed);
-                    var turnReactSpeed = (m_CurrentTurnAmount > desiredTurnAmount ? .1f : 1f);
-                    if (Application.isPlaying)
-                    {
-                        m_CurrentTurnAmount = Mathf.SmoothDamp(m_CurrentTurnAmount, desiredTurnAmount,
-                                                             ref m_TurnSpeedVelocityChange, turnReactSpeed);
-                    }
-                    else
-                    {
-                        // for editor mode, smoothdamp won't work because it uses deltaTime internally
-                        m_CurrentTurnAmount = desiredTurnAmount;
-                    }
-                }
-                else
-                {
-                    m_CurrentTurnAmount = 1;
-                }
-                m_LastFlatAngle = currentFlatAngle;
-            }
+            //    // This section allows the camera to stop following the target's rotation when the target is spinning too fast.
+            //    // eg when a car has been knocked into a spin. The camera will resume following the rotation
+            //    // of the target when the target's angular velocity slows below the threshold.
+            //    var currentFlatAngle = Mathf.Atan2(targetForward.x, targetForward.z)*Mathf.Rad2Deg;
+            //    if (m_SpinTurnLimit > 0)
+            //    {
+            //        var targetSpinSpeed = Mathf.Abs(Mathf.DeltaAngle(m_LastFlatAngle, currentFlatAngle))/deltaTime;
+            //        var desiredTurnAmount = Mathf.InverseLerp(m_SpinTurnLimit, m_SpinTurnLimit*0.75f, targetSpinSpeed);
+            //        var turnReactSpeed = (m_CurrentTurnAmount > desiredTurnAmount ? .1f : 1f);
+            //        if (Application.isPlaying)
+            //        {
+            //            m_CurrentTurnAmount = Mathf.SmoothDamp(m_CurrentTurnAmount, desiredTurnAmount,
+            //                                                 ref m_TurnSpeedVelocityChange, turnReactSpeed);
+            //        }
+            //        else
+            //        {
+            //            // for editor mode, smoothdamp won't work because it uses deltaTime internally
+            //            m_CurrentTurnAmount = desiredTurnAmount;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        m_CurrentTurnAmount = 1;
+            //    }
+            //    m_LastFlatAngle = currentFlatAngle;
+            //}
 
             // camera position moves towards target position:
             transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime*m_MoveSpeed);
 
             // camera's rotation is split into two parts, which can have independend speed settings:
             // rotating towards the target's forward direction (which encompasses its 'yaw' and 'pitch')
-            if (!m_FollowTilt)
-            {
-                targetForward.y = 0;
-                if (targetForward.sqrMagnitude < float.Epsilon)
-                {
-                    targetForward = transform.forward;
-                }
-            }
-            var rollRotation = Quaternion.LookRotation(targetForward, m_RollUp);
+            //if (!m_FollowTilt)
+            //{
+            //    targetForward.y = 0;
+            //    if (targetForward.sqrMagnitude < float.Epsilon)
+            //    {
+            //        targetForward = transform.forward;
+            //    }
+            //}
+            //var rollRotation = Quaternion.LookRotation(targetForward, m_RollUp);
 
-            // and aligning with the target object's up direction (i.e. its 'roll')
-            m_RollUp = m_RollSpeed > 0 ? Vector3.Slerp(m_RollUp, targetUp, m_RollSpeed*deltaTime) : Vector3.up;
-            transform.rotation = Quaternion.Lerp(transform.rotation, rollRotation, m_TurnSpeed*m_CurrentTurnAmount*deltaTime);
+            //// and aligning with the target object's up direction (i.e. its 'roll')
+            //m_RollUp = m_RollSpeed > 0 ? Vector3.Slerp(m_RollUp, targetUp, m_RollSpeed*deltaTime) : Vector3.up;
+            //transform.rotation = Quaternion.Lerp(transform.rotation, rollRotation, m_TurnSpeed*m_CurrentTurnAmount*deltaTime);
         }
     }
 }
