@@ -15,15 +15,10 @@ public class Engine : MonoBehaviour{
     // Use this for initialisation
     void Awake(){
 		singleton = this;
-		Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
+		//Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
 
 		camScript = mainCameraRig.GetComponent<AutoCamera>();
 	}
-
-    void Update()
-    {
-
-    }
 
 	/** Sets the camera's offset to whatever called this function's offset
 	 *  if the camera is focused on the caller.
@@ -33,6 +28,7 @@ public class Engine : MonoBehaviour{
 			camScript.SetOffset(off);
 	}
 
-	public void Reload() {
+	public void Reload(GameObject bow) {
+		
 	}
 }

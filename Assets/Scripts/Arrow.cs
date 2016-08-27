@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/** Arrow class. Requires a rigidbody2d initally attached to gameObject.
+ */
 public class Arrow : MonoBehaviour {
-	Rigidbody2D body; //rigidbody once arrow is fired
-	Vector2 v; //velocity once rigidbody is attached
+	Rigidbody2D body;
+	Vector2 v; //rigidbody2d's instantaneous velocity
+
+	GameObject bowOrigin; //the bow that fired this arrow instance
 
 	bool hit; //flag to check if the arrow has hit anything
 
@@ -15,12 +19,9 @@ public class Arrow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		body = gameObject.GetComponent<Rigidbody2D>();
 		hit = false;
 		speaker = gameObject.GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update() {
 	}
 
 	//control arrow's image based on trajectory. stops when arrow sticks.
@@ -33,14 +34,12 @@ public class Arrow : MonoBehaviour {
 		}
 	}
 
-	//arrow is fired from bow
-	public void FireArrow(Vector2 initVelocity) {
-		if(body == null) {
-			speaker.PlayOneShot(whiz);
-			body = gameObject.AddComponent<Rigidbody2D>();
-			body.velocity = initVelocity;
-			StartCoroutine(TrackAngle());
-		}
+	//Arrow constructor. This is called by bow as soon as its created.
+	public void FireArrow(Vector2 initVelocity, GameObject bow) {
+		bowOrigin = bow;
+		speaker.PlayOneShot(whiz);
+		body.velocity = initVelocity;
+		StartCoroutine(TrackAngle());
 	}
 
 	//runs when arrow hits barrier
@@ -48,7 +47,7 @@ public class Arrow : MonoBehaviour {
 		if(other.gameObject.tag == "Barrier") {
 			hit = true;
 			speaker.PlayOneShot(thunk);
-			Engine.singleton.Reload();
+			Engine.singleton.Reload(bowOrigin);
 			if(body != null) {
 				Destroy(body);
 				foreach(Component coll in GetComponents<Collider2D>())
