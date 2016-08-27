@@ -1,4 +1,4 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class Bow : MonoBehaviour {
@@ -36,8 +36,8 @@ public class Bow : MonoBehaviour {
     //
     void Start()
     {
-        //Engine.singleton.arrowShot = false;
-        //Engine.singleton.arrowPrepared = false;
+        Engine.singleton.arrowShot = false;
+        Engine.singleton.arrowPrepared = false;
 
         // setup the line renderer representing the bowstring
         bowStringLinerenderer = bowString.AddComponent<LineRenderer>();
@@ -79,8 +79,8 @@ public class Bow : MonoBehaviour {
         arrow.transform.localPosition = transform.position;
         arrow.transform.localRotation = transform.localRotation;
         arrow.transform.parent = transform;
-        //Engine.singleton.arrowShot = false;
-        //Engine.singleton.arrowPrepared = false;
+        Engine.singleton.arrowShot = false;
+        Engine.singleton.arrowPrepared = false;
     }
 
     // public void PullString()
@@ -110,7 +110,7 @@ public class Bow : MonoBehaviour {
             arrowPosition.x = (arrowStartX - length);
             arrow.transform.localPosition = arrowPosition;
         }
-        //Engine.singleton.arrowPrepared = true;
+        Engine.singleton.arrowPrepared = true;
     }
 
     //
@@ -123,7 +123,7 @@ public class Bow : MonoBehaviour {
     {
         arrow.transform.parent = Engine.singleton.transform;
         arrow.FireArrow(Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z)) * new Vector2(25f * length, 0));
-        //Engine.singleton.arrowPrepared = false;
+        Engine.singleton.arrowPrepared = false;
         stringPullout = stringRestPosition;
     }
 
@@ -139,4 +139,4 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.SetPosition(1, stringPullout);
         bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);
     }
-}*/
+}
