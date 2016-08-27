@@ -60,13 +60,33 @@ public class Engine : MonoBehaviour
             Vector2 currMousePos = Input.mousePosition;
             Vector2 dragDistance =  currMousePos - downPosition;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            Debug.Log(angleZ);
-            playersBow.PullString(angleZ);
+            if(angleZ > -60)
+            {
+                playersBow.PullString(dragDistance.magnitude, angleZ);
+                if (playersActor.dir == Actor.Face.Right)
+                {
+                    playersActor.TurnAround();
+                }
+            }
+            else if (angleZ < -120)
+            {
+                playersBow.PullString(dragDistance.magnitude, angleZ + 180);
+                if (playersActor.dir == Actor.Face.Left)
+                {
+                    playersActor.TurnAround();
+                }
+            }
+
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            // Reset 
-            playersBow.PullString(0);
+            float length = Input.mousePosition.magnitude / 3f;
+            length = Mathf.Clamp(length, 0, 1);
+            Vector3 initVelocity = Quaternion.Euler(new Vector3(playersBow.transform.rotation.eulerAngles.x, playersBow.transform.rotation.eulerAngles.y, playersBow.transform.rotation.eulerAngles.z)) * new Vector2(1000f, 0);
+            // FireArrow
+            Arrow newArrow = ((GameObject) Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position , playersBow.transform.rotation)).GetComponent<Arrow>();
+            newArrow.FireArrow(initVelocity, playersBow.gameObject);
+            playersBow.FireArrow();
         }
     }
 }

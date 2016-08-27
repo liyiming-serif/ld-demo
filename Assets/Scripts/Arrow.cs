@@ -18,24 +18,25 @@ public class Arrow : MonoBehaviour {
 	AudioClip thunk; //sound of the arrow hitting ANY barrier
 
 	// Use this for initialization
-	void Start() {
-		body = gameObject.GetComponent<Rigidbody2D>();
+	void Awake() {
+		body = GetComponent<Rigidbody2D>();
 		hit = false;
-		speaker = gameObject.GetComponent<AudioSource>();
+		speaker = GetComponent<AudioSource>();
 	}
 
 	//control arrow's image based on trajectory. stops when arrow sticks.
 	IEnumerator TrackAngle() {
 		while(hit == false) {
-			v = gameObject.GetComponent<Rigidbody2D>().velocity;
+			v = body.velocity;
 			float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
-			gameObject.transform.eulerAngles = new Vector3(0,0,angle);
+			transform.eulerAngles = new Vector3(0,0,angle);
 			yield return null;
 		}
 	}
 
 	//Arrow constructor. This is called by bow as soon as its created.
 	public void FireArrow(Vector2 initVelocity, GameObject bow) {
+        Debug.Log(body);
 		bowOrigin = bow;
 		speaker.PlayOneShot(whiz);
 		body.velocity = initVelocity;
