@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections.Generic;
 
 public class Bow : MonoBehaviour {
@@ -90,7 +90,7 @@ public class Bow : MonoBehaviour {
     public void PullString()
     {
         mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        /*if (Physics.Raycast(mouseRay, out rayHit, 1000f) && Engine.singleton.arrowShot == false)
+        if (Physics.Raycast(mouseRay, out rayHit, 1000f) && Engine.singleton.arrowShot == false)
         {
             //TODO max turning radius should not be over +\-90.
             // determine the position on the screen
@@ -109,7 +109,7 @@ public class Bow : MonoBehaviour {
             Vector3 arrowPosition = arrow.transform.localPosition;
             arrowPosition.x = (arrowStartX - length);
             arrow.transform.localPosition = arrowPosition;
-        }*/
+        }
         //Engine.singleton.arrowPrepared = true;
     }
 
@@ -139,4 +139,4 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.SetPosition(1, stringPullout);
         bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);
     }
-}
+}*/
