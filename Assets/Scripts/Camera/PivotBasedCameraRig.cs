@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
+
 public abstract class PivotBasedCameraRig : AbstractTargetFollower {
 
     // CameraRig
-    //  Pivot
-    //      Camera
+    //   Pivot
+    //     Camera
 
     protected Transform m_Camera;
     protected Transform m_Pivot;
