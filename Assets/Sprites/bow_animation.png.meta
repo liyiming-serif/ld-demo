@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9dc29f8b6ccb6754681cd9d90c59aaf7
-timeCreated: 1471466520
+timeCreated: 1472296067
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -67,8 +67,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -78,10 +78,10 @@ TextureImporter:
       name: bow_animation_55x70_1
       rect:
         serializedVersion: 2
-        x: 55
+        x: 78
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -91,10 +91,10 @@ TextureImporter:
       name: bow_animation_55x70_2
       rect:
         serializedVersion: 2
-        x: 110
+        x: 156
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,10 +104,10 @@ TextureImporter:
       name: bow_animation_55x70_3
       rect:
         serializedVersion: 2
-        x: 165
+        x: 234
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,10 +117,10 @@ TextureImporter:
       name: bow_animation_55x70_4
       rect:
         serializedVersion: 2
-        x: 220
+        x: 312
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,10 +130,10 @@ TextureImporter:
       name: bow_animation_55x70_5
       rect:
         serializedVersion: 2
-        x: 275
+        x: 390
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,10 +143,10 @@ TextureImporter:
       name: bow_animation_55x70_6
       rect:
         serializedVersion: 2
-        x: 330
+        x: 468
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +156,10 @@ TextureImporter:
       name: bow_animation_55x70_7
       rect:
         serializedVersion: 2
-        x: 385
+        x: 546
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: bow_animation_55x70_8
       rect:
         serializedVersion: 2
-        x: 440
+        x: 624
         y: 0
-        width: 55
-        height: 70
+        width: 78.77778
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
