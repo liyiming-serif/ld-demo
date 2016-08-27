@@ -48,7 +48,7 @@ public class Arrow : MonoBehaviour {
 		if(other.gameObject.tag == "Barrier") {
 			hit = true;
 			speaker.PlayOneShot(thunk);
-			Engine.singleton.Notch();
+			//Engine.singleton.Notch();
 			if(body != null) {
 				Destroy(body);
 				foreach(Component coll in GetComponents<Collider2D>())

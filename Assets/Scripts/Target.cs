@@ -22,7 +22,7 @@ public class Target : MonoBehaviour {
 	{
 		speaker.PlayOneShot(thunk);
 		if(other.gameObject.tag == "Projectile") {
-			Engine.singleton.score += value;
+			//Engine.singleton.score += value;
 		}
 	}
 }

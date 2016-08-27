@@ -36,8 +36,8 @@ public class Bow : MonoBehaviour {
     //
     void Start()
     {
-        Engine.singleton.arrowShot = false;
-        Engine.singleton.arrowPrepared = false;
+        //Engine.singleton.arrowShot = false;
+        //Engine.singleton.arrowPrepared = false;
 
         // setup the line renderer representing the bowstring
         bowStringLinerenderer = bowString.AddComponent<LineRenderer>();
@@ -79,8 +79,8 @@ public class Bow : MonoBehaviour {
         arrow.transform.localPosition = transform.position;
         arrow.transform.localRotation = transform.localRotation;
         arrow.transform.parent = transform;
-        Engine.singleton.arrowShot = false;
-        Engine.singleton.arrowPrepared = false;
+        //Engine.singleton.arrowShot = false;
+        //Engine.singleton.arrowPrepared = false;
     }
 
     // public void PullString()
@@ -90,7 +90,7 @@ public class Bow : MonoBehaviour {
     public void PullString()
     {
         mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(mouseRay, out rayHit, 1000f) && Engine.singleton.arrowShot == false)
+        /*if (Physics.Raycast(mouseRay, out rayHit, 1000f) && Engine.singleton.arrowShot == false)
         {
             //TODO max turning radius should not be over +\-90.
             // determine the position on the screen
@@ -109,8 +109,8 @@ public class Bow : MonoBehaviour {
             Vector3 arrowPosition = arrow.transform.localPosition;
             arrowPosition.x = (arrowStartX - length);
             arrow.transform.localPosition = arrowPosition;
-        }
-        Engine.singleton.arrowPrepared = true;
+        }*/
+        //Engine.singleton.arrowPrepared = true;
     }
 
     //
@@ -123,7 +123,7 @@ public class Bow : MonoBehaviour {
     {
         arrow.transform.parent = Engine.singleton.transform;
         arrow.FireArrow(Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z)) * new Vector2(25f * length, 0));
-        Engine.singleton.arrowPrepared = false;
+        //Engine.singleton.arrowPrepared = false;
         stringPullout = stringRestPosition;
     }
 

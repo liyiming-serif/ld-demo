@@ -15,6 +15,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] protected Transform m_Target;            // The target object to follow
         [SerializeField] private bool m_AutoTargetPlayer = true;  // Whether the rig should automatically target the player.
         [SerializeField] private UpdateType m_UpdateType;         // stores the selected update type
+		protected Vector3 m_Offset;								  // official camera offset
 
         protected Rigidbody targetRigidbody;
 
@@ -32,7 +33,7 @@ namespace UnityStandardAssets.Cameras
         }
 
 
-        private void FixedUpdate()
+		private void FixedUpdate()
         {
             // we update from here if updatetype is set to Fixed, or in auto mode,
             // if the target has a rigidbody, and isn't kinematic.
@@ -42,12 +43,12 @@ namespace UnityStandardAssets.Cameras
             }
             if (m_UpdateType == UpdateType.FixedUpdate)
             {
-                FollowTarget(Time.deltaTime);
+				FollowTarget(Time.deltaTime);
             }
         }
 
 
-        private void LateUpdate()
+		private void LateUpdate()
         {
             // we update from here if updatetype is set to Late, or in auto mode,
             // if the target does not have a rigidbody, or - does have a rigidbody but is set to kinematic.
@@ -57,12 +58,12 @@ namespace UnityStandardAssets.Cameras
             }
             if (m_UpdateType == UpdateType.LateUpdate)
             {
-                FollowTarget(Time.deltaTime);
+				FollowTarget(Time.deltaTime);
             }
         }
 
 
-        public void ManualUpdate()
+		public void ManualUpdate()
         {
             // we update from here if updatetype is set to Late, or in auto mode,
             // if the target does not have a rigidbody, or - does have a rigidbody but is set to kinematic.
@@ -72,18 +73,18 @@ namespace UnityStandardAssets.Cameras
             }
             if (m_UpdateType == UpdateType.ManualUpdate)
             {
-                FollowTarget(Time.deltaTime);
+				FollowTarget(Time.deltaTime);
             }
         }
 
-        protected abstract void FollowTarget(float deltaTime);
+		protected abstract void FollowTarget(float deltaTime);
 
 
         public void FindAndTargetPlayer()
         {
             // auto target an object tagged player, if no target has been assigned
             var targetObj = GameObject.FindGameObjectWithTag("Player");
-            if (targetObj)
+			if (targetObj)
             {
                 SetTarget(targetObj.transform);
             }
@@ -95,10 +96,19 @@ namespace UnityStandardAssets.Cameras
             m_Target = newTransform;
         }
 
-
         public Transform Target
         {
             get { return m_Target; }
         }
+
+		public virtual void SetOffset(Vector3 off)
+		{
+			m_Offset = off;
+		}
+
+		public Vector3 Offset
+		{
+			get { return m_Offset; }
+		}
     }
 }
