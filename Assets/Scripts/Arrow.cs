@@ -48,11 +48,11 @@ public class Arrow : MonoBehaviour {
 			hit = true;
 			speaker.PlayOneShot(thunk);
 			Engine.singleton.Reload(bowOrigin);
-			if(body != null) {
-				Destroy(body);
-				foreach(Component coll in GetComponents<Collider2D>())
-					Destroy(coll);
 			}
+		if(body != null) {
+			Destroy(body);
+			foreach(Component coll in GetComponents<Collider2D>())
+				Destroy(coll);
 		}
 	}
 }
