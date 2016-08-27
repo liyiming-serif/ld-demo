@@ -64,22 +64,26 @@ public class Actor : MonoBehaviour {
 
 			//Turn Around
 			if(Mathf.Sign(xTilt) != Mathf.Sign(transform.localScale.x)) {
-				Vector3 temp = transform.localScale;
-				temp.x *= -1;
-				transform.localScale = temp;
-
-				cameraOffset.x *= -1;
-				Engine.singleton.ChangeCameraOffset(gameObject, cameraOffset);
-
-				if(temp.x > 0)
-					dir = Face.Right;
-				else if(temp.x < 0)
-					dir = Face.Left;
+				TurnAround();
 			}
 		}
 		else {
 			animate.SetTrigger("stopWalk");
 		}
+	}
+
+	public void TurnAround() {
+		Vector3 temp = transform.localScale;
+		temp.x *= -1;
+		transform.localScale = temp;
+
+		cameraOffset.x *= -1;
+		Engine.singleton.ChangeCameraOffset(gameObject, cameraOffset);
+
+		if(temp.x > 0)
+			dir = Face.Right;
+		else if(temp.x < 0)
+			dir = Face.Left;
 	}
 
 	public void Jump() {
