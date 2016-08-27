@@ -16,6 +16,7 @@ public class Actor : MonoBehaviour {
 	Rigidbody2D body;
 	public enum Face{Left, Right};
 	[HideInInspector] public Face dir;
+	Animator animation;
 
 	//grants spatial awareness
 	Transform groundCheck; //check if this actor is on ground
@@ -31,6 +32,7 @@ public class Actor : MonoBehaviour {
 		groundCheck = transform.Find("GroundCheck");
 		onGround = false;
 		dir = Face.Right;
+		animation = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -43,6 +45,12 @@ public class Actor : MonoBehaviour {
 	 */
 	public void Move(float xTilt) { //NOTE: xTilt must be calculated for enemy AI.
 		body.velocity = new Vector2(xTilt * moveSpeed, body.velocity.y);
+		if(xTilt != 0) {
+			animation.SetTrigger("startWalk");
+		} else {
+			animation.SetTrigger("stopWalk");
+		}
+
 		//Turn Around
 		if(Mathf.Sign(xTilt) != Mathf.Sign(transform.localScale.x) && xTilt != 0) {
 			Vector3 temp = transform.localScale;
