@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: dfb91fad7ebb4f343bfb0944505af141
-timeCreated: 1472310281
+guid: be05a070543096b4db5ae78ae6060f6f
+timeCreated: 1472310146
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: walk_0
-    21300002: walk_1
-    21300004: walk_2
-    21300006: walk_3
-    21300008: walk_4
-    21300010: walk_5
+    21300000: jump_0
+    21300002: jump_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,12 +55,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_0
+      name: jump_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 19
+        width: 20
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -72,64 +68,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: walk_1
+      name: jump_1
       rect:
         serializedVersion: 2
-        x: 19
+        x: 20
         y: 0
-        width: 19
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: walk_2
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 0
-        width: 19
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: walk_3
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 0
-        width: 19
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: walk_4
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 0
-        width: 19
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: walk_5
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 0
-        width: 19
+        width: 20
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}

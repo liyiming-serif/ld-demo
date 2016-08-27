@@ -38,7 +38,10 @@ public class Actor : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		onGround = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Solid"));
-
+		if(onGround)
+			animation.SetTrigger("land");
+		else if(body.velocity.y < 0)
+			animation.SetTrigger("fall");
 	}
 
 	/**Called every FixedUpdate of the controller
@@ -70,6 +73,7 @@ public class Actor : MonoBehaviour {
 	public void Jump() {
 		if(onGround) {
 			body.velocity = new Vector2(body.velocity.x, jumpHeight);
+			animation.SetTrigger("startJump");
 		}
 	}
 

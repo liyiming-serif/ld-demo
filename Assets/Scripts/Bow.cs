@@ -139,4 +139,5 @@ public class Bow : MonoBehaviour {
         bowStringLinerenderer.SetPosition(1, stringPullout);
         bowStringLinerenderer.SetPosition(2, bowStringPosition[2]);
     }
-}*/
+}
+*/
