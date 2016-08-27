@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9dc29f8b6ccb6754681cd9d90c59aaf7
-timeCreated: 1472296067
+timeCreated: 1472322323
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,15 @@ TextureImporter:
     21300012: bow_animation_55x70_6
     21300014: bow_animation_55x70_7
     21300016: bow_animation_55x70_8
+    21300018: bow_0
+    21300020: bow_1
+    21300022: bow_2
+    21300024: bow_3
+    21300026: bow_4
+    21300028: bow_5
+    21300030: bow_6
+    21300032: bow_7
+    21300034: bow_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -62,7 +71,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bow_animation_55x70_0
+      name: bow_0
       rect:
         serializedVersion: 2
         x: 0
@@ -75,7 +84,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_1
+      name: bow_1
       rect:
         serializedVersion: 2
         x: 78
@@ -88,7 +97,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_2
+      name: bow_2
       rect:
         serializedVersion: 2
         x: 156
@@ -101,7 +110,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_3
+      name: bow_3
       rect:
         serializedVersion: 2
         x: 234
@@ -114,7 +123,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_4
+      name: bow_4
       rect:
         serializedVersion: 2
         x: 312
@@ -127,7 +136,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_5
+      name: bow_5
       rect:
         serializedVersion: 2
         x: 390
@@ -140,7 +149,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_6
+      name: bow_6
       rect:
         serializedVersion: 2
         x: 468
@@ -153,7 +162,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_7
+      name: bow_7
       rect:
         serializedVersion: 2
         x: 546
@@ -166,7 +175,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: bow_animation_55x70_8
+      name: bow_8
       rect:
         serializedVersion: 2
         x: 624
