@@ -128,7 +128,6 @@ public class Engine : MonoBehaviour
         {
             Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            Debug.Log(timer);
             if (timer < 2.5f) {
                 if ((angleZ > 80 && angleZ < 180) || (angleZ < -100 && angleZ > -180))
                 {   
@@ -178,7 +177,6 @@ public class Engine : MonoBehaviour
         {
             Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            Debug.Log(angleZ);
             float constSpeed = -4.0f;
             if (angleZ > -70 && angleZ < 70)
             {
