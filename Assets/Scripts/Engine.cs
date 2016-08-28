@@ -84,9 +84,13 @@ public class Engine : MonoBehaviour
                 frameNo = 6;
                 count += 1;
             }
-            else if (count == 10 && frameNo != 7)
+            else if (count == 5 && frameNo != 7)
             {
                 frameNo = 7;
+                count += 1;
+            }
+            else if (count > 10)
+            {
                 count = 0;
             }
             else
@@ -109,7 +113,8 @@ public class Engine : MonoBehaviour
             Vector2 currMousePos = Input.mousePosition;
             Vector2 dragDistance = currMousePos - downPosition;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            if (angleZ > -60 && angleZ < -30)
+            Debug.Log(angleZ);
+            if (angleZ > -70 && angleZ < -20)
             {
                 AnimateBow(dragDistance.magnitude);
                 playersBow.PullString(frameNo, angleZ);
@@ -118,7 +123,7 @@ public class Engine : MonoBehaviour
                     playersActor.TurnAround();
                 }
             }
-            else if (angleZ < -120 && angleZ > -150)
+            else if (angleZ < -110 && angleZ > -160)
             {
                 AnimateBow(dragDistance.magnitude);
                 playersBow.PullString(frameNo, angleZ + 180);
