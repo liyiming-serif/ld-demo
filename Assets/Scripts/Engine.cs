@@ -109,7 +109,7 @@ public class Engine : MonoBehaviour
             Vector2 currMousePos = Input.mousePosition;
             Vector2 dragDistance = currMousePos - downPosition;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            if (angleZ > -60)
+            if (angleZ > -60 && angleZ < -30)
             {
                 AnimateBow(dragDistance.magnitude);
                 playersBow.PullString(frameNo, angleZ);
@@ -118,7 +118,7 @@ public class Engine : MonoBehaviour
                     playersActor.TurnAround();
                 }
             }
-            else if (angleZ < -120)
+            else if (angleZ < -120 && angleZ > -150)
             {
                 AnimateBow(dragDistance.magnitude);
                 playersBow.PullString(frameNo, angleZ + 180);
@@ -141,7 +141,7 @@ public class Engine : MonoBehaviour
                 { 
                     constSpeed = -3.0f;
                 }
-                Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * Mathf.Max(dragDistance.magnitude, 300.0f), 0);
+                Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * Mathf.Max(dragDistance.magnitude, 250.0f), 0);
                 // FireArrow
                 Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
                 newArrow.FireArrow(initVelocity, playersBow.gameObject);
