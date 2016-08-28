@@ -42,6 +42,7 @@ public class Engine : MonoBehaviour
 		targets = GameObject.FindGameObjectsWithTag("Target");
         numRandV = 4;
         randValues = new float[numRandV];
+		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Projectile"));
         //Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
     }
 
