@@ -9,32 +9,34 @@ using System.Collections;
  */
 public class ChickAIControlled : Target {
 
-	private bool stationary; //flag checking for AI mode.
+	[SerializeField] private bool stationary; //flag checking for AI mode.
 	private Actor actor;
-	Transform leftCheck;
-	Transform rightCheck;
+	Transform sideCheck; //check the space directly in front of chick
 	private Animator animate;
 	[SerializeField] private float flightSpeed;
 
 	// Use this for initialization
 	void Awake () {
 		actor = GetComponent<Actor>();
-		leftCheck = transform.Find("LeftCheck");
-		rightCheck = transform.Find("RightCheck");
-		if(leftCheck == null || rightCheck == null)
+		sideCheck = transform.Find("SideCheck");
+		if(sideCheck == null)
 			stationary = true;
-		else
-			stationary = false;
 		animate = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(stationary == false) {
-			if(actor.dir == Actor.Face.Right)
+		if(stationary == false && panicking == false && dead == false)
+		{
+			if(Physics2D.Linecast(transform.position, sideCheck.position, 1 << LayerMask.NameToLayer("Solid")))
+				actor.TurnAround();
+			
+			if(actor.dir == Actor.Face.Right) {
 				actor.Move(1f);
-			else if(actor.dir == Actor.Face.Left)
+			}
+			else if(actor.dir == Actor.Face.Left) {
 				actor.Move(-1f);
+			}
 		}
 	}
 

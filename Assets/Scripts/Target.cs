@@ -7,6 +7,7 @@ public class Target : MonoBehaviour {
 	[SerializeField] protected float outerSight = 200f;
 	protected CircleCollider2D sightTrigger;
 	protected bool dead;
+	protected bool panicking;
 
 	void Start()
 	{
@@ -43,7 +44,9 @@ public class Target : MonoBehaviour {
 	}
 
 	protected virtual void Panic(Vector2 landingSpot) {
-		if(dead==false)
+		if(dead == false) {
+			panicking = true;
 			Debug.Log("?");
+		}
 	}
 }
