@@ -25,6 +25,7 @@ public class Actor : MonoBehaviour {
 	Animator animate;
 	Transform groundCheck; //check if this actor is on ground
 	[HideInInspector] public bool flying = false;
+	float ogGravity; //preserves initial gravity for when flying units come back down
 
 	// Use this for initialization
 	void Awake () {
@@ -33,6 +34,7 @@ public class Actor : MonoBehaviour {
 		onGround = false;
 		dir = Face.Right;
 		animate = GetComponent<Animator>();
+		ogGravity = body.gravityScale;
 	}
 	
 	// Update is called once per frame
@@ -107,10 +109,33 @@ public class Actor : MonoBehaviour {
 		}
 	}
 
-	public IEnumerable Fly(Vector2 trajectory) {
-		flying = true;
-		transform.position = new Vector2(transform.position.x + trajectory.x, transform.position.y + trajectory.y);
-		yield return null;
-		Debug.Log("fly");
+	/**Wrapper method to start or stop the flying coroutine. Enter the zero vector to stop flying.
+	 */
+	public void Fly(Vector2 trajectory)
+	{
+		if(trajectory != Vector2.zero) { //start flying
+			StartCoroutine("CoFly", trajectory);
+		}
+		else { //stop flying
+			StopCoroutine("CoFly");
+			flying = false;
+			body.gravityScale = ogGravity;
+		}
+	}
+
+	public IEnumerator CoFly(Vector2 trajectory) {
+		body.gravityScale = 0;
+		while(GetComponent<SpriteRenderer>().isVisible){
+			Debug.Log("fly");
+			flying = true;
+			transform.position = new Vector2(transform.position.x + trajectory.x, transform.position.y + trajectory.y);
+			yield return null;
+
+			//Turn Around
+			if(Mathf.Sign(trajectory.x) != Mathf.Sign(transform.localScale.x)) {
+				TurnAround();
+			}
+
+		}
 	}
 }

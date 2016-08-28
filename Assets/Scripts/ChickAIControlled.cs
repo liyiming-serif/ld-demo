@@ -14,7 +14,7 @@ public class ChickAIControlled : Target {
 	Transform leftCheck;
 	Transform rightCheck;
 	private Animator animate;
-	[SerializeField] private float flightSpeed = 45;
+	[SerializeField] private float flightSpeed;
 
 	// Use this for initialization
 	void Awake () {
@@ -34,15 +34,20 @@ public class ChickAIControlled : Target {
 
 	protected override void Die()
 	{
-		actor.StopCoroutine("Fly");
-		actor.flying = false;
+		Debug.Log("?");
+		actor.Fly(Vector2.zero);
 		animate.SetBool("die", true);
 	}
 
 	protected override void Panic(Vector2 incursion)
 	{
-		Vector2 traj = new Vector2(Mathf.Sign(transform.position.x-incursion.x),1);
-		traj *= flightSpeed;
-		actor.StartCoroutine("Fly", traj);
+		Debug.Log("!");
+		Vector2 traj;
+		if((transform.position.x - incursion.x) > 0)
+			traj = new Vector2(flightSpeed, flightSpeed);
+		else
+			traj = new Vector2(-flightSpeed, flightSpeed);
+		actor.Fly(traj);
+		sightTrigger.enabled = false;
 	}
 }

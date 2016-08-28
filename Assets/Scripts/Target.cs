@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Target : MonoBehaviour {
 
-	[SerializeField] private float innerSight = 80f;
-	[SerializeField] private float outerSight = 200f;
-	private CircleCollider2D sightTrigger;
+	[SerializeField] protected float innerSight = 80f;
+	[SerializeField] protected float outerSight = 200f;
+	protected CircleCollider2D sightTrigger;
 
 	void Start()
 	{
@@ -15,14 +15,15 @@ public class Target : MonoBehaviour {
 	}
 
 	//death sequence when hit by arrow
-	protected virtual void OnColliderEnter2D(Collision2D other)
+	void OnCollisionEnter2D(Collision2D other)
 	{
 		if(other.gameObject.tag == "Projectile") {
 			Die();
+			Debug.Log("!");
 		}
 	}
 
-	protected virtual void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.gameObject.tag == "Player") {
 			Panic(other.gameObject.transform.position);
