@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 0e509348f99fbc345884bc26981505ca
-timeCreated: 1472328583
+guid: 12fa42bdce5f64e4face6666df8a5ee8
+timeCreated: 1472332137
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chick_idle_0
-    21300002: chick_idle_1
+    21300000: grass_tile_0
+    21300002: grass_tile_1
+    21300004: grass_tile_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,7 +30,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: -1
@@ -55,7 +56,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chick_idle_0
+      name: grass_tile_0
       rect:
         serializedVersion: 2
         x: 0
@@ -68,10 +69,23 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: chick_idle_1
+      name: grass_tile_1
       rect:
         serializedVersion: 2
         x: 20
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: grass_tile_2
+      rect:
+        serializedVersion: 2
+        x: 40
         y: 0
         width: 20
         height: 20

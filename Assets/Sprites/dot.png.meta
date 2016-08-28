@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 0e509348f99fbc345884bc26981505ca
-timeCreated: 1472328583
+guid: c22d2f61473af4f479a7ea97e988091d
+timeCreated: 1472342948
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: chick_idle_0
-    21300002: chick_idle_1
+    21300000: dot_0
+    21300002: dot_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,7 +29,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: -1
@@ -55,26 +55,26 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chick_idle_0
+      name: dot_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 20
+        width: 3
+        height: 3
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: chick_idle_1
+      name: dot_1
       rect:
         serializedVersion: 2
-        x: 20
+        x: 3
         y: 0
-        width: 20
-        height: 20
+        width: 3
+        height: 3
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

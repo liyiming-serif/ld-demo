@@ -1,28 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof (CircleCollider2D))]
+[RequireComponent(typeof (CircleCollider2D))]
+
 public class Target : MonoBehaviour {
-	[SerializeField]
-	int value; //points player gets for hitting this target
-	AudioSource speaker;
-	[SerializeField]
-	AudioClip thunk; //sound when ANY projectile hits this
-	// Use this for initialization
-	void Start () {
-		speaker = gameObject.GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	[SerializeField] private CircleCollider2D innerSight;
+	[SerializeField] private CircleCollider2D outerSight;
+
+
+	//death sequence when hit by arrow
+	protected virtual void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.gameObject.tag == "Projectile") {
+			Die();
+		}
+		else if(other.gameObject.tag == "Player") {
+			Panic();
+		}
 	}
 
-	//increment points when hit by arrow
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		speaker.PlayOneShot(thunk);
-		if(other.gameObject.tag == "Projectile") {
-			//Engine.singleton.score += value;
-		}
+	protected virtual void Die(){
+		Destroy(gameObject);
+	}
+
+	protected virtual void Panic() {
 	}
 }
