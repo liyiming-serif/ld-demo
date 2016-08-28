@@ -25,52 +25,9 @@ public class Bow : MonoBehaviour
     //
     // When the player pulls out the string
     //
-    public void PullString(float magnitude, float angleZ)
+    public void PullString(int frameNo, float angleZ)
     {
-
-        if (magnitude < 10)
-        {
-            spriteRend.sprite = sprites[0];
-        }
-        else if (magnitude < 20)
-        {
-            spriteRend.sprite = sprites[1];
-        }
-        else if (magnitude < 40)
-        {
-            spriteRend.sprite = sprites[2];
-        }
-        else if (magnitude < 60)
-        {
-            spriteRend.sprite = sprites[3];
-        }
-        else if (magnitude < 80)
-        {
-            spriteRend.sprite = sprites[4];
-        }
-        else if (magnitude < 100)
-        {
-            spriteRend.sprite = sprites[5];
-        }
-        else
-        {
-            if(nowTag == 6 && count == 3)
-            {
-                spriteRend.sprite = sprites[7];
-                nowTag = 7;
-                count = 0;
-            }
-            else if(nowTag == 7 && count == 3)
-            {
-                spriteRend.sprite = sprites[6];
-                nowTag = 6;
-                count = 0;
-            }
-            else
-            {
-                count += 1;
-            }
-        }
+        spriteRend.sprite = sprites[frameNo];
         transform.eulerAngles = new Vector3(0, 0, angleZ);
     }
 

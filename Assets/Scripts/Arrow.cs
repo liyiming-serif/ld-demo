@@ -36,7 +36,6 @@ public class Arrow : MonoBehaviour {
 
 	//Arrow constructor. This is called by bow as soon as its created.
 	public void FireArrow(Vector2 initVelocity, GameObject bow) {
-        Debug.Log(body);
 		bowOrigin = bow;
 		speaker.PlayOneShot(whiz);
 		body.velocity = initVelocity;
