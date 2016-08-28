@@ -24,6 +24,7 @@ public class Actor : MonoBehaviour {
 	[HideInInspector] public Face dir;
 	Animator animate;
 	Transform groundCheck; //check if this actor is on ground
+	[HideInInspector] public bool flying = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -36,7 +37,10 @@ public class Actor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		onGround = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Solid"));
+		if(!flying)
+			onGround = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Solid"));
+		else
+			onGround = false;
 
 		//ANIMATOR: handle everything in the air
 		if(!onGround) {
@@ -60,6 +64,9 @@ public class Actor : MonoBehaviour {
 			if(onGround) {
 				animate.SetTrigger("startWalk");
 				animate.speed = Mathf.Abs(xTilt);
+			}
+			else {
+				animate.speed = 1f;
 			}
 
 			//Turn Around
@@ -98,5 +105,12 @@ public class Actor : MonoBehaviour {
 		if(body.velocity.y > jumpHeight * hopHeight) {
 			body.velocity = new Vector2(body.velocity.x, jumpHeight*hopHeight);
 		}
+	}
+
+	public IEnumerable Fly(Vector2 trajectory) {
+		flying = true;
+		transform.position = new Vector2(transform.position.x + trajectory.x, transform.position.y + trajectory.y);
+		yield return null;
+		Debug.Log("fly");
 	}
 }

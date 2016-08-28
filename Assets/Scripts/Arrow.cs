@@ -44,10 +44,11 @@ public class Arrow : MonoBehaviour {
 
 	//runs when arrow hits barrier
 	void OnCollisionEnter2D(Collision2D other) {
-		if(other.gameObject.tag == "Barrier") {
+		if(other.gameObject.tag == "Barrier" || other.gameObject.tag == "Target") {
 			hit = true;
 			speaker.PlayOneShot(thunk);
 			Engine.singleton.Reload(bowOrigin);
+			Engine.singleton.AlertAll(other.contacts[0].point);
 			}
 		if(body != null) {
 			Destroy(body);

@@ -30,10 +30,13 @@ public class Engine : MonoBehaviour
     private int frameNo;
     private int count;
 
+	private GameObject[] targets;
+
     // Use this for initialisation
     void Awake()
     {
         singleton = this;
+		targets = GameObject.FindGameObjectsWithTag("Target");
         //Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
     }
 
@@ -158,4 +161,10 @@ public class Engine : MonoBehaviour
             playersBow.FireArrow();
         }
     }
+
+	public void AlertAll(Vector2 landingSpot){
+		foreach(GameObject t in targets) {
+			t.BroadcastMessage("Alert", landingSpot);
+		}
+	}
 }

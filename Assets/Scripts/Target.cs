@@ -25,21 +25,21 @@ public class Target : MonoBehaviour {
 	protected virtual void OnTriggerEnter2D(Collider2D other)
 	{
 		if(other.gameObject.tag == "Player") {
-			Panic();
+			Panic(other.gameObject.transform.position);
 		}
 	}
 
 	public void Alert(Vector2 landingSpot) {
 		float proximity = Vector2.Distance(landingSpot, transform.position);
 		if(proximity <= innerSight)
-			Panic();
+			Panic(landingSpot);
 	}
 
 	protected virtual void Die(){
-		Destroy(gameObject);
+		Debug.Log("!");
 	}
 
-	protected virtual void Panic() {
-		Debug.Log("!");
+	protected virtual void Panic(Vector2 landingSpot) {
+		Debug.Log("?");
 	}
 }
