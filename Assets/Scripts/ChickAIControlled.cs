@@ -34,14 +34,14 @@ public class ChickAIControlled : Target {
 
 	protected override void Die()
 	{
-		Debug.Log("?");
 		actor.Fly(Vector2.zero);
 		animate.SetBool("die", true);
+		sightTrigger.enabled = false;
+		GetComponent<Rigidbody2D>().gravityScale *= 60;
 	}
 
 	protected override void Panic(Vector2 incursion)
 	{
-		Debug.Log("!");
 		Vector2 traj;
 		if((transform.position.x - incursion.x) > 0)
 			traj = new Vector2(flightSpeed, flightSpeed);
