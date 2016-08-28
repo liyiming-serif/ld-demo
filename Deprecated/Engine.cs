@@ -22,16 +22,16 @@ public class Engine : MonoBehaviour
     public static float[] randValues;
     public int numRandV;
 
+    // to determine the mouse position, we need a raycast
+    private Vector2 downPosition;
+
     // position of the raycast on the screen
     private float posX;
     private float posY;
 
-    // for updating the Bow Sprite
+    // 
     private int frameNo;
     private int count;
-    private float timer;
-    private bool listening;
-    private float strength;
 
 	private GameObject[] targets;
 
@@ -59,29 +59,29 @@ public class Engine : MonoBehaviour
 
     }
 
-    public void AnimateBow(float timepassed)
+    public void AnimateBow(float distance)
     {
-        if (timepassed < 0.2f)
+        if (distance < 100)
         {
             frameNo = 0;
         }
-        else if (timepassed < 0.4f)
+        else if (distance < 150)
         {
             frameNo = 1;
         }
-        else if (timepassed < 0.8f)
+        else if (distance < 200)
         {
             frameNo = 2;
         }
-        else if (timepassed < 1.4f)
+        else if (distance < 250)
         {
             frameNo = 3;
         }
-        else if (timepassed < 1.8f)
+        else if (distance < 300)
         {
             frameNo = 4;
         }
-        else if (timepassed < 2.2f)
+        else if (distance < 350)
         {
             frameNo = 5;
         }
@@ -120,82 +120,60 @@ public class Engine : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // Record the pos of Mouse down
-            timer = 0.0f;
-            listening = true;
+            downPosition = Input.mousePosition;
         }
         else if (Input.GetMouseButton(0))
         {
-            Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
+            Vector2 currMousePos = Input.mousePosition;
+            Vector2 dragDistance = currMousePos - downPosition;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            Debug.Log(timer);
-            if (timer < 4.0f) {
-                if ((angleZ > 80 && angleZ < 180) || (angleZ < -100 && angleZ > -180))
-                {   
-                    AnimateBow(timer);
-                    if (playersActor.dir == Actor.Face.Right)
-                    {
-                        playersActor.TurnAround();
-                    }
-                    playersBow.PullString(frameNo, angleZ + 180);
-                }
-                else if (angleZ > -70 && angleZ < 70)
-                {
-                    AnimateBow(timer);
-                    if (playersActor.dir == Actor.Face.Left)
-                    {
-                        playersActor.TurnAround();
-                    }
-                    playersBow.PullString(frameNo, angleZ);
-                }
-                else
-                {
-                    frameNo = 0;
-                    playersBow.FireArrow();
-                }
-                timer += Time.deltaTime;
-            }else if(listening)
+            if ((angleZ > -90) && (angleZ < 70))
             {
-                timer = 0.0f;
-                listening = false;
-                //TellEveryoneTheArrowNeedsToBeFired();
+                AnimateBow(dragDistance.magnitude);
+                playersBow.PullString(frameNo, angleZ);
+                if (playersActor.dir == Actor.Face.Right)
+                {
+                    playersActor.TurnAround();
+                }
+            }
+            else if (((angleZ <= -90) && (angleZ >= -180)) ||  ((angleZ > 110) && (angleZ < 180)))
+            {
+                AnimateBow(dragDistance.magnitude);
+                playersBow.PullString(frameNo, angleZ + 180);
+                if (playersActor.dir == Actor.Face.Left)
+                {
+                    playersActor.TurnAround();
+                }
+            }
+            else
+            {
+                frameNo = 0;
                 playersBow.FireArrow();
             }
 
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (listening)
+            if (frameNo > 2)
             {
-                TellEveryoneTheArrowNeedsToBeFired();
+                Vector2 currMousePos = Input.mousePosition;
+                Vector2 dragDistance = currMousePos - downPosition;
+                float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
+                float constSpeed = 4.0f;
+                if ((angleZ > -90) && (angleZ < 70))
+                { 
+                    constSpeed = -4.0f;
+                }
+                Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * Mathf.Min(dragDistance.magnitude, 350.0f), 0);
+                // FireArrow
+                Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
+                newArrow.FireArrow(initVelocity, playersBow.gameObject);
             }
+            playersBow.FireArrow();
         }
     }
 
-    public void TellEveryoneTheArrowNeedsToBeFired()
-    {
-        if (frameNo > 2)
-        {
-            Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
-            float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            Debug.Log(angleZ);
-            float constSpeed = -4.0f;
-            if (angleZ > -70 && angleZ < 70)
-            {
-                constSpeed = 4.0f;
-            }
-            timer = Mathf.Min(timer, 2.6f);
-            Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * 350.0f * (timer / 2.6f), 0);
-            // FireArrow
-            Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
-            newArrow.FireArrow(initVelocity, playersBow.gameObject);
-        }
-        playersBow.FireArrow();
-        timer = 0.0f;
-        listening = false;
-
-    }
-
-    public void AlertAll(Vector2 landingSpot){
+	public void AlertAll(Vector2 landingSpot){
 		foreach(GameObject t in targets) {
 			t.BroadcastMessage("Alert", landingSpot);
 		}
