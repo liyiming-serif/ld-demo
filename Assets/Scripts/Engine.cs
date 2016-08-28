@@ -113,7 +113,6 @@ public class Engine : MonoBehaviour
             Vector2 currMousePos = Input.mousePosition;
             Vector2 dragDistance = currMousePos - downPosition;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            Debug.Log(angleZ);
             if (angleZ > -70 && angleZ < -20)
             {
                 AnimateBow(dragDistance.magnitude);
