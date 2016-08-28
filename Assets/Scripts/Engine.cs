@@ -176,7 +176,6 @@ public class Engine : MonoBehaviour
 	public void AlertAll(Vector2 landingSpot){
 		foreach(GameObject t in targets) {
 			t.BroadcastMessage("Alert", landingSpot);
-			Debug.Log("alerted");
 		}
 	}
 }

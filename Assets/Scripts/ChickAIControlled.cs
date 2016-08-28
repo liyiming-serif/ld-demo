@@ -4,12 +4,12 @@ using System.Collections;
 
 [RequireComponent(typeof (Actor))]
 /**
- * Controls the chick target.
+ * Controls the chick target. The chick has 2 AI modes: moving and stationary.
+ * Turn on stationary by childing LeftCheck and RightCheck.
  */
 public class ChickAIControlled : Target {
-	
 
-	[SerializeField] private bool stationary; //Target comes in 2 varieties: moving and stationary.
+	private bool stationary; //flag checking for AI mode.
 	private Actor actor;
 	Transform leftCheck;
 	Transform rightCheck;
@@ -37,7 +37,7 @@ public class ChickAIControlled : Target {
 		actor.Fly(Vector2.zero);
 		animate.SetBool("die", true);
 		sightTrigger.enabled = false;
-		GetComponent<Rigidbody2D>().gravityScale *= 60;
+		GetComponent<Rigidbody2D>().gravityScale *= actor.fastFall;
 	}
 
 	protected override void Panic(Vector2 incursion)

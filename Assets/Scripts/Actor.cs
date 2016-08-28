@@ -3,7 +3,7 @@ using System.Collections;
 
 /**
  * Basic functionality for 2d platformer actor. Attach to all actors in 2d platformer.
- * Can walk, jump, and hop on sloped surfaces.
+ * Can walk, jump, hop, and fastfall on sloped surfaces.
  * Can be extended to flying and crawling characters.
  * REQUIRES gameObject to have a GroundCheck as its child.
  * Every Actor MUST agree on this Animator fsm schema.
@@ -15,6 +15,7 @@ public class Actor : MonoBehaviour {
 	public float jumpHeight;
 	[Range(0,1)] public float hopHeight;
 	public float moveSpeed;
+	public float fastFall = 1; //gravity multiplier
 	public Vector2 cameraOffset; //a buffer for the following camera.
 
 	//helper members
