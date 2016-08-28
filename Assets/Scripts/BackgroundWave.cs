@@ -6,7 +6,8 @@ public class BackgroundWave : MonoBehaviour {
     private Transform[] trans;
 
     private int counter;
-    
+
+
     void Start()
     {
         counter = 0;
@@ -18,7 +19,7 @@ public class BackgroundWave : MonoBehaviour {
         {
             if (counter == 0)
             {
-                trans[i].position = new Vector2(trans[i].position.x, (i + 1) * 2);
+                trans[i].position = new Vector2(trans[i].position.x, Engine.randValues[i] * (i + 1) + 1);
                 counter += 1;
             }
             else if (counter == 50)

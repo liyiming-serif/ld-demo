@@ -19,6 +19,9 @@ public class Engine : MonoBehaviour
     private AutoCamera mainCameraRig;
 
 
+    public static float[] randValues;
+    public int numRandV;
+
     // to determine the mouse position, we need a raycast
     private Vector2 downPosition;
 
@@ -37,6 +40,8 @@ public class Engine : MonoBehaviour
     {
         singleton = this;
 		targets = GameObject.FindGameObjectsWithTag("Target");
+        numRandV = 4;
+        randValues = new float[numRandV];
         //Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
     }
 
@@ -56,27 +61,27 @@ public class Engine : MonoBehaviour
 
     public void AnimateBow(float distance)
     {
-        if (distance < 40)
+        if (distance < 100)
         {
             frameNo = 0;
         }
-        else if (distance < 80)
+        else if (distance < 150)
         {
             frameNo = 1;
         }
-        else if (distance < 120)
+        else if (distance < 200)
         {
             frameNo = 2;
         }
-        else if (distance < 160)
+        else if (distance < 250)
         {
             frameNo = 3;
         }
-        else if (distance < 200)
+        else if (distance < 300)
         {
             frameNo = 4;
         }
-        else if (distance < 240)
+        else if (distance < 350)
         {
             frameNo = 5;
         }
@@ -105,6 +110,12 @@ public class Engine : MonoBehaviour
 
     public void Update()
     {
+        //Gen new random values
+        for(int i = 0; i < randValues.Length; i++)
+        {
+           randValues[i] = Random.value;
+        }
+        
         //Cal the distance = Mouse drag - Mouse down 
         if (Input.GetMouseButtonDown(0))
         {
@@ -148,12 +159,12 @@ public class Engine : MonoBehaviour
                 Vector2 currMousePos = Input.mousePosition;
                 Vector2 dragDistance = currMousePos - downPosition;
                 float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-                float constSpeed = 3.0f;
-                if (angleZ > -60)
+                float constSpeed = 4.0f;
+                if ((angleZ > -90) && (angleZ < 70))
                 { 
-                    constSpeed = -3.0f;
+                    constSpeed = -4.0f;
                 }
-                Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * Mathf.Max(dragDistance.magnitude, 250.0f), 0);
+                Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * Mathf.Min(dragDistance.magnitude, 350.0f), 0);
                 // FireArrow
                 Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
                 newArrow.FireArrow(initVelocity, playersBow.gameObject);
