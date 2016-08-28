@@ -126,7 +126,6 @@ public class Actor : MonoBehaviour {
 	public IEnumerator CoFly(Vector2 trajectory) {
 		body.gravityScale = 0;
 		while(GetComponent<SpriteRenderer>().isVisible){
-			Debug.Log("fly");
 			flying = true;
 			transform.position = new Vector2(transform.position.x + trajectory.x, transform.position.y + trajectory.y);
 			yield return null;

@@ -56,6 +56,9 @@ public class Arrow : MonoBehaviour
             speaker.PlayOneShot(thunk);
             Engine.singleton.Reload(bowOrigin);
             Engine.singleton.AlertAll(other.contacts[0].point);
+			if(other.gameObject.tag == "Barrier") {
+				gameObject.transform.SetParent(other.gameObject.transform);
+			}
         }
         if (other.gameObject.tag != "Bouncy")
         {
