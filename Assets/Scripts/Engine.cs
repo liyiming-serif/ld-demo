@@ -157,7 +157,7 @@ public class Engine : MonoBehaviour
                 Vector2 dragDistance = currMousePos - downPosition;
                 float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
                 float constSpeed = 4.0f;
-                if (angleZ > -60)
+                if ((angleZ > -90) && (angleZ < 70))
                 { 
                     constSpeed = -4.0f;
                 }
