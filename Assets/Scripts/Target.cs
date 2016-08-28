@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof (CircleCollider2D))]
-[RequireComponent(typeof (CircleCollider2D))]
-
 public class Target : MonoBehaviour {
 
 	[SerializeField] private CircleCollider2D innerSight;
 	[SerializeField] private CircleCollider2D outerSight;
 
+	void Start()
+	{
+		
+	}
 
 	//death sequence when hit by arrow
 	protected virtual void OnCollisionEnter2D(Collision2D other)
@@ -23,8 +24,10 @@ public class Target : MonoBehaviour {
 
 	protected virtual void Die(){
 		Destroy(gameObject);
+		Debug.Log("!");
 	}
 
 	protected virtual void Panic() {
+		Debug.Log("!");
 	}
 }
