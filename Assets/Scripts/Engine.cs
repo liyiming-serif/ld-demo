@@ -19,6 +19,9 @@ public class Engine : MonoBehaviour
     private AutoCamera mainCameraRig;
 
 
+    public static float[] randValues;
+    public int numRandV;
+
     // to determine the mouse position, we need a raycast
     private Vector2 downPosition;
 
@@ -34,6 +37,8 @@ public class Engine : MonoBehaviour
     void Awake()
     {
         singleton = this;
+        numRandV = 4;
+        randValues = new float[numRandV];
         //Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
     }
 
@@ -102,6 +107,12 @@ public class Engine : MonoBehaviour
 
     public void Update()
     {
+        //Gen new random values
+        for(int i = 0; i < randValues.Length; i++)
+        {
+           randValues[i] = Random.value;
+        }
+        
         //Cal the distance = Mouse drag - Mouse down 
         if (Input.GetMouseButtonDown(0))
         {
