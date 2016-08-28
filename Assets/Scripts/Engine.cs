@@ -131,6 +131,10 @@ public class Engine : MonoBehaviour
                     playersActor.TurnAround();
                 }
             }
+            else
+            {
+                playersBow.FireArrow();
+            }
 
         }
         else if (Input.GetMouseButtonUp(0))
