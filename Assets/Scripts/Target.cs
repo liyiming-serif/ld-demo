@@ -6,12 +6,14 @@ public class Target : MonoBehaviour {
 	[SerializeField] protected float innerSight = 80f;
 	[SerializeField] protected float outerSight = 200f;
 	protected CircleCollider2D sightTrigger;
+	protected bool dead;
 
 	void Start()
 	{
 		sightTrigger = gameObject.AddComponent<CircleCollider2D>() as CircleCollider2D;
 		sightTrigger.radius = outerSight;
 		sightTrigger.isTrigger = true;
+		dead = false;
 	}
 
 	//death sequence when hit by arrow
@@ -19,7 +21,6 @@ public class Target : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "Projectile") {
 			Die();
-			Debug.Log("!");
 		}
 	}
 
@@ -38,9 +39,11 @@ public class Target : MonoBehaviour {
 
 	protected virtual void Die(){
 		Debug.Log("!");
+		dead = true;
 	}
 
 	protected virtual void Panic(Vector2 landingSpot) {
-		Debug.Log("?");
+		if(dead==false)
+			Debug.Log("?");
 	}
 }
