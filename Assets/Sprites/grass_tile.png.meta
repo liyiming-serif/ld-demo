@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: 9335911eca638f34781f21c714b8b3ce
-timeCreated: 1472333240
+guid: 12fa42bdce5f64e4face6666df8a5ee8
+timeCreated: 1472332137
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: target_0
-    21300002: target_1
-    21300004: target_2
-    21300006: target_3
-    21300008: target_4
-    21300010: target_5
+    21300000: grass_tile_0
+    21300002: grass_tile_1
+    21300004: grass_tile_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,78 +56,39 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: target_0
+      name: grass_tile_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
-        height: 40
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: target_1
+      name: grass_tile_1
       rect:
         serializedVersion: 2
-        x: 30
+        x: 20
         y: 0
-        width: 30
-        height: 40
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: target_2
+      name: grass_tile_2
       rect:
         serializedVersion: 2
-        x: 60
+        x: 40
         y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_3
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_4
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_5
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 0
-        width: 30
-        height: 40
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

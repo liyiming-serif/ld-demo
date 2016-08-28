@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 9335911eca638f34781f21c714b8b3ce
-timeCreated: 1472333240
+guid: 1f8b63b533ab4d144b177184edfda92a
+timeCreated: 1472334903
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: target_0
-    21300002: target_1
-    21300004: target_2
-    21300006: target_3
-    21300008: target_4
-    21300010: target_5
+    21300000: flying_target_0
+    21300002: flying_target_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,12 +55,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: target_0
+      name: flying_target_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 30
+        width: 60
         height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -72,64 +68,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: target_1
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_2
+      name: flying_target_1
       rect:
         serializedVersion: 2
         x: 60
         y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_3
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_4
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 30
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: target_5
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 0
-        width: 30
+        width: 60
         height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
