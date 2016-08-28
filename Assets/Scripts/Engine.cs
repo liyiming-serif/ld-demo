@@ -113,7 +113,7 @@ public class Engine : MonoBehaviour
             Vector2 currMousePos = Input.mousePosition;
             Vector2 dragDistance = currMousePos - downPosition;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            if (angleZ > -70 && angleZ < -20)
+            if ((angleZ > -90) && (angleZ < 70))
             {
                 AnimateBow(dragDistance.magnitude);
                 playersBow.PullString(frameNo, angleZ);
@@ -122,7 +122,7 @@ public class Engine : MonoBehaviour
                     playersActor.TurnAround();
                 }
             }
-            else if (angleZ < -110 && angleZ > -160)
+            else if (((angleZ <= -90) && (angleZ >= -180)) ||  ((angleZ > 110) && (angleZ < 180)))
             {
                 AnimateBow(dragDistance.magnitude);
                 playersBow.PullString(frameNo, angleZ + 180);
@@ -133,6 +133,7 @@ public class Engine : MonoBehaviour
             }
             else
             {
+                frameNo = 0;
                 playersBow.FireArrow();
             }
 
