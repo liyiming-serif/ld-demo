@@ -47,6 +47,7 @@ public class ChickAIControlled : Target {
 		animate.SetBool("die", true);
 		sightTrigger.enabled = false;
 		GetComponent<Rigidbody2D>().gravityScale *= actor.fastFall;
+		DestroySights();
 	}
 
 	protected override void Panic(Vector2 incursion)
@@ -65,8 +66,8 @@ public class ChickAIControlled : Target {
 
 	IEnumerator DestroySightsDelayed()
 	{
-		changeSights();
+		ChangeSights();
 		yield return new WaitForSeconds(.7f);
-		destroySights();
+		DestroySights();
 	}
 }

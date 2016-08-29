@@ -23,7 +23,7 @@ public class Target : MonoBehaviour {
 		sightTrigger.isTrigger = true;
 		particleParent = transform.Find("ParticleParent");
 		if(particleParent != null && sightParticle != null) {
-			drawSights(outerSight);
+			DrawSights(outerSight);
 		}
 
 		panicking = false;
@@ -55,7 +55,7 @@ public class Target : MonoBehaviour {
 		}
 	}
 
-	void drawSights(float rad)
+	void DrawSights(float rad)
 	{
 
 		//calculate amount of particles needed
@@ -79,7 +79,7 @@ public class Target : MonoBehaviour {
 		parentWarningImg = particleParent.GetComponent<SpriteRenderer>().sprite;
 	}
 
-	protected void changeSights(bool original=false)
+	protected void ChangeSights(bool original=false)
 	{
 		if(particleParent != null && sightParticle != null) {
 			if(original == false) {
@@ -97,7 +97,7 @@ public class Target : MonoBehaviour {
 		}
 	}
 
-	protected void destroySights()
+	protected void DestroySights()
 	{
 		Destroy(particleParent.gameObject);
 	}
