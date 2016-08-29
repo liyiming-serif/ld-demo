@@ -27,7 +27,7 @@ public class Target : MonoBehaviour {
 
 	void Update()
 	{
-		if(particleParent != null)
+		if(particleParent != null && sightParticle != null)
 			particleParent.Rotate(new Vector3(0, 0, 1));
 	}
 
@@ -51,17 +51,22 @@ public class Target : MonoBehaviour {
 
 	void drawSights(float rad)
 	{
+
 		//calculate amount of particles needed
 		float circ = Mathf.PI*2f*rad;
 		int parts = Mathf.RoundToInt(circ / 64f);
 
-		//place particles
+		//generate and place particles
 		for(int i = 0; i <= parts; i++) {
 			GameObject part = Instantiate(sightParticle, particleParent) as GameObject;
 			float angle = (float) i/parts *2f*Mathf.PI;
-			part.transform.localPosition = new Vector2(rad*Mathf.Sin(angle),rad*Mathf.Cos(angle));
-			//Instantiate(sightParticle, pos, Quaternion.identity, transform);
+			part.transform.localPosition = new Vector2(1.05f*Mathf.Sin(angle),1.05f*Mathf.Cos(angle));
+			part.transform.localScale = new Vector2(1/rad, 1/rad);
+			part.transform.localEulerAngles = new Vector3(0,0,-angle*360f/(2f*Mathf.PI));
 		}
+
+		//scale particle parent
+		particleParent.localScale = new Vector2(rad,rad);
 	}
 
 	public void Alert(Vector2 landingSpot) {
