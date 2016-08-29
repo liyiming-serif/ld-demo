@@ -18,11 +18,17 @@ public class Target : MonoBehaviour {
 		sightTrigger.radius = outerSight;
 		sightTrigger.isTrigger = true;
 		particleParent = transform.Find("ParticleParent");
-		if(particleParent != null)
+		if(particleParent != null && sightParticle != null)
 			drawSights(outerSight);
 
 		panicking = false;
 		dead = false;
+	}
+
+	void Update()
+	{
+		if(particleParent != null)
+			particleParent.Rotate(new Vector3(0, 0, 1));
 	}
 
 	//death sequence when hit by arrow
@@ -47,7 +53,7 @@ public class Target : MonoBehaviour {
 	{
 		//calculate amount of particles needed
 		float circ = Mathf.PI*2f*rad;
-		int parts = Mathf.RoundToInt(circ / 32f);
+		int parts = Mathf.RoundToInt(circ / 64f);
 
 		//place particles
 		for(int i = 0; i <= parts; i++) {
