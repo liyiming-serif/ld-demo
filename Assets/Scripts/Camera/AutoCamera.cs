@@ -17,7 +17,8 @@ public class AutoCamera : PivotBasedCameraRig
         }
 
         // camera position moves towards target position: the position of (deltaTime * m_MoveSpeed) % towards m_Target+m_Offset
-		transform.position = Vector3.Lerp(transform.position, m_Target.position+m_Offset, deltaTime * m_MoveSpeed);
+        Vector3 targetPosx = new Vector3(m_Target.position.x, transform.position.y, transform.position.z); 
+		transform.position = Vector3.Lerp(transform.position, targetPosx + m_Offset, deltaTime * m_MoveSpeed);
 
     }
 }
