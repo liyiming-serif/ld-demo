@@ -35,6 +35,11 @@ public class Target : MonoBehaviour {
 		}
 	}
 
+	void drawSights(float rad)
+	{
+		
+	}
+
 	public void Alert(Vector2 landingSpot) {
 		float proximity = Vector2.Distance(landingSpot, transform.position);
 		if(proximity <= innerSight)
