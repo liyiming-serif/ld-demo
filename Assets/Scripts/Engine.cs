@@ -12,6 +12,9 @@ public class Engine : MonoBehaviour
     public static Engine singleton;
 
     [SerializeField]
+    private ChallengeScript challengesc;
+
+    [SerializeField]
     private Bow playersBow;
     [SerializeField]
     private Actor playersActor;
@@ -57,9 +60,21 @@ public class Engine : MonoBehaviour
             mainCameraRig.SetOffset(off);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bow"></param>
     public void Reload(GameObject bow)
     {
 
+    }
+
+    /// <summary>
+    /// Tell Challenge script that they need to restart the challenge
+    /// </summary>
+    public void ChallengeFailed()
+    {
+        challengesc.ChallengeFailed();
     }
 
     public void AnimateBow(float timepassed)
