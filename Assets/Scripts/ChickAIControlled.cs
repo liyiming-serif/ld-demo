@@ -59,6 +59,14 @@ public class ChickAIControlled : Target {
 				traj = new Vector2(-flightSpeed, flightSpeed);
 			actor.Fly(traj);
 			sightTrigger.enabled = false;
+			StartCoroutine(DestroySightsDelayed());
 		}
+	}
+
+	IEnumerator DestroySightsDelayed()
+	{
+		changeSights();
+		yield return new WaitForSeconds(.7f);
+		destroySights();
 	}
 }

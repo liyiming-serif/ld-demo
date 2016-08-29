@@ -135,7 +135,9 @@ public class Actor : MonoBehaviour {
 			if(Mathf.Sign(trajectory.x) != Mathf.Sign(transform.localScale.x)) {
 				TurnAround();
 			}
-
+				
 		}
+		Debug.Log("challenge failed");
+		//Engine.singleton.ChallengeFailed();
 	}
 }
