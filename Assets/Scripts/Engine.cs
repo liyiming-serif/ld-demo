@@ -34,10 +34,12 @@ public class Engine : MonoBehaviour
     private float strength;
 
 	private GameObject[] targets;
+    public int arrowsUsed;
 
     // Use this for initialisation
     void Awake()
     {
+        arrowsUsed = 0;
         singleton = this;
 		targets = GameObject.FindGameObjectsWithTag("Target");
         numRandV = 4;
@@ -186,6 +188,7 @@ public class Engine : MonoBehaviour
             // FireArrow
             Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
             newArrow.FireArrow(initVelocity, playersBow.gameObject);
+            arrowsUsed += 1;
         }
         playersBow.FireArrow();
         listening = false;
