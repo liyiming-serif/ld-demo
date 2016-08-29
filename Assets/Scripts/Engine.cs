@@ -18,6 +18,7 @@ public class Engine : MonoBehaviour
     private Bow playersBow;
     [SerializeField]
     private Actor playersActor;
+	private Vector2 originalOffset;
     [SerializeField]
     private AutoCamera mainCameraRig;
 
@@ -42,6 +43,7 @@ public class Engine : MonoBehaviour
     // Use this for initialisation
     void Awake()
     {
+		originalOffset = playersActor.cameraOffset;
         arrowsUsed = 0;
         singleton = this;
 		targets = GameObject.FindGameObjectsWithTag("Target");
@@ -140,6 +142,14 @@ public class Engine : MonoBehaviour
             // Record the pos of Mouse down
             timer = 0.0f;
             listening = true;
+			if(playersActor != null)
+			{
+				if(playersActor.dir == Actor.Face.Right)
+					playersActor.cameraOffset = new Vector2(250f,0f);
+				else
+					playersActor.cameraOffset = new Vector2(-250f,0f);
+				ChangeCameraOffset(playersActor.gameObject, playersActor.cameraOffset);
+			}
         }
         else if (Input.GetMouseButton(0))
         {
@@ -184,6 +194,14 @@ public class Engine : MonoBehaviour
             {
                 TellEveryoneTheArrowNeedsToBeFired();
             }
+			if(playersActor != null)
+			{
+				if(playersActor.dir == Actor.Face.Right)
+					playersActor.cameraOffset = new Vector2(originalOffset.x,originalOffset.y);
+				else
+					playersActor.cameraOffset = new Vector2(-originalOffset.x,originalOffset.y);
+				ChangeCameraOffset(playersActor.gameObject, playersActor.cameraOffset);
+			}
         }
     }
 
