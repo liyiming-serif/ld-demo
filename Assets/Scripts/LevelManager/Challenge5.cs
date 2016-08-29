@@ -6,19 +6,18 @@ using System;
 public class Challenge5 : ChallengeScript {
 
     [SerializeField]
-    private Target target;
-
-    public override void ChallengeFailed()
-    {
-        throw new NotImplementedException();
-    }
+    private Target[] targets;
 
     void Update()
     {
-        if (target.dead)
+        foreach(Target t in targets)
         {
-            nextChallenge.SetActive(true);
-            statsResult.text = (1.0f / Engine.singleton.arrowsUsed * 100).ToString("#.##") + "%";
+            if (!t.dead)
+            {
+                return;
+            }
         }
+        nextChallenge.SetActive(true);
+        statsResult.text = (1.0f / Engine.singleton.arrowsUsed * 100).ToString("#.##") + "%";
     }
 }

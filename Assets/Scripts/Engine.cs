@@ -79,27 +79,27 @@ public class Engine : MonoBehaviour
 
     public void AnimateBow(float timepassed)
     {
-        if (timepassed < 0.2f)
+        if (timepassed < 0.1f)
         {
             frameNo = 0;
         }
-        else if (timepassed < 0.4f)
+        else if (timepassed < 0.2f)
         {
             frameNo = 1;
         }
-        else if (timepassed < 0.6f)
+        else if (timepassed < 0.3f)
         {
             frameNo = 2;
         }
-        else if (timepassed < 0.8f)
+        else if (timepassed < 0.4f)
         {
             frameNo = 3;
         }
-        else if (timepassed < 1.0f)
+        else if (timepassed < 0.5f)
         {
             frameNo = 4;
         }
-        else if (timepassed < 1.2f)
+        else if (timepassed < 0.6f)
         {
             frameNo = 5;
         }
@@ -145,7 +145,7 @@ public class Engine : MonoBehaviour
         {
             Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            if (timer < 4.5f) {
+            if (timer < 3f) {
                 if ((angleZ >= 90 && angleZ <= 180) || (angleZ < -110 && angleZ > -180))
                 {   
                     AnimateBow(timer);
@@ -193,13 +193,13 @@ public class Engine : MonoBehaviour
         {
             Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            float constSpeed = -4.0f;
+            float constSpeed = -6.0f;
             if (angleZ > -70 && angleZ < 90)
             {
-                constSpeed = 4.0f;
+                constSpeed = 6.0f;
             }
-            timer = Mathf.Min(timer, 1.4f);
-            Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * 250.0f * (timer / 1.4f), 0);
+            timer = Mathf.Min(timer, 0.7f);
+            Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * 250.0f * (timer / 0.7f), 0);
             // FireArrow
             Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
             newArrow.FireArrow(initVelocity, playersBow.gameObject);

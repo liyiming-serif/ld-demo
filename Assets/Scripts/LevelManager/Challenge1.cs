@@ -8,11 +8,6 @@ public class Challenge1 : ChallengeScript {
     [SerializeField]
     Target target;
 
-    public override void ChallengeFailed()
-    {
-        throw new NotImplementedException();
-    }
-
     void Update()
     {
         if (target.dead)

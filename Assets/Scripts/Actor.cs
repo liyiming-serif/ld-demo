@@ -37,6 +37,11 @@ public class Actor : MonoBehaviour {
 		animate = GetComponent<Animator>();
 		ogGravity = body.gravityScale;
 	}
+
+    void Start()
+    {
+        Engine.singleton.ChangeCameraOffset(gameObject, cameraOffset);
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {

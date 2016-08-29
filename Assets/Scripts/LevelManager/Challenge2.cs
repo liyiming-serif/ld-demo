@@ -8,11 +8,6 @@ public class Challenge2 : ChallengeScript {
     [SerializeField]
     private Target target;
 
-    public override void ChallengeFailed()
-    {
-        redoChallenge.SetActive(true);
-    }
-
     void Update()
     {
         if (target.dead)

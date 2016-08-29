@@ -10,6 +10,9 @@ public abstract class ChallengeScript : MonoBehaviour {
     [SerializeField]
     protected GameObject redoChallenge;
 
-    public abstract void ChallengeFailed();
+    public virtual void ChallengeFailed()
+    {
+        redoChallenge.SetActive(true);
+    }
 
 }
