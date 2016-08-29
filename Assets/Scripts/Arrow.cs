@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/** Arrow class. Requires a rigidbody2d initally attached to gameObject.
+/** Arrow class. Requires a rigidbody2d and a sprite renderer initally attached to gameObject.
  */
 public class Arrow : MonoBehaviour
 {
     Rigidbody2D body;
     Vector2 v; //rigidbody2d's instantaneous velocity
-
     GameObject bowOrigin; //the bow that fired this arrow instance
 
     bool hit; //flag to check if the arrow has hit anything
+
+	SpriteRenderer drawer;
+	[SerializeField] Sprite arrowLand;
 
     AudioSource speaker;
     [SerializeField]
@@ -24,6 +26,7 @@ public class Arrow : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         hit = false;
         speaker = GetComponent<AudioSource>();
+		drawer = GetComponent<SpriteRenderer>();
     }
 
     //control arrow's image based on trajectory. stops when arrow sticks.
@@ -53,6 +56,7 @@ public class Arrow : MonoBehaviour
         if (other.gameObject.tag == "Barrier" || other.gameObject.tag == "Target")
         {
             hit = true;
+			drawer.sprite = arrowLand;
             speaker.PlayOneShot(thunk);
             Engine.singleton.Reload(bowOrigin);
             Engine.singleton.AlertAll(other.contacts[0].point);
