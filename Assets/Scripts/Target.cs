@@ -6,7 +6,10 @@ public class Target : MonoBehaviour {
 	[SerializeField] protected float innerSight = 80f;
 	[SerializeField] protected float outerSight = 200f;
 	protected CircleCollider2D sightTrigger;
-	protected bool dead;
+	[SerializeField] protected GameObject sightParticle;
+	protected GameObject[] sightParticles;
+
+	public bool dead { get; set;}
 	protected bool panicking;
 
 	void Start()
@@ -14,6 +17,9 @@ public class Target : MonoBehaviour {
 		sightTrigger = gameObject.AddComponent<CircleCollider2D>() as CircleCollider2D;
 		sightTrigger.radius = outerSight;
 		sightTrigger.isTrigger = true;
+		drawSights(outerSight);
+
+		panicking = false;
 		dead = false;
 	}
 
@@ -37,7 +43,19 @@ public class Target : MonoBehaviour {
 
 	void drawSights(float rad)
 	{
-		
+		//calculate amount of particles needed
+		float circ = Mathf.PI*2f*rad;
+		int parts = Mathf.RoundToInt(circ / 32f);
+		sightParticles = new GameObject[parts];
+
+		//place particles
+		for(int i = 0; i <= parts; i++) {
+			GameObject part = Instantiate(sightParticle, transform) as GameObject;
+			float angle = (float) i/parts *2f*Mathf.PI;
+			part.transform.localPosition = new Vector2(rad*Mathf.Sin(angle),rad*Mathf.Cos(angle));
+			sightParticles[i] = part;
+			//Instantiate(sightParticle, pos, Quaternion.identity, transform);
+		}
 	}
 
 	public void Alert(Vector2 landingSpot) {
