@@ -9,7 +9,7 @@ public class Target : MonoBehaviour {
 	[SerializeField] protected GameObject sightParticle;
 	protected Transform particleParent;
 
-	protected bool dead;
+	public bool dead { get; set;}
 	protected bool panicking;
 
 	void Start()
