@@ -43,7 +43,7 @@ public class Target : MonoBehaviour {
 		if(other.gameObject.tag == "Projectile") {
 			Die();
 		}
-		else if(other.gameObject.tag == "Player") {
+		else if(other.gameObject.tag == "Player" || other.gameObject.tag == "Target") {
 			Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
 		}
 	}
