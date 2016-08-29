@@ -155,7 +155,6 @@ public class Engine : MonoBehaviour
                 timer += Time.deltaTime;
             }else if(listening)
             {
-                timer = 0.0f;
                 listening = false;
                 //TellEveryoneTheArrowNeedsToBeFired();
                 playersBow.FireArrow();
@@ -189,7 +188,6 @@ public class Engine : MonoBehaviour
             newArrow.FireArrow(initVelocity, playersBow.gameObject);
         }
         playersBow.FireArrow();
-        timer = 0.0f;
         listening = false;
 
     }
