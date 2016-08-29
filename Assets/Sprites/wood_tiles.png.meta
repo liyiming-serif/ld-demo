@@ -1,13 +1,17 @@
 fileFormatVersion: 2
-guid: 95586618b59d2d741bde05b095b7d36d
-timeCreated: 1472448902
+guid: aba68801f2276cb4c87feb9cbe94d53b
+timeCreated: 1472508533
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: tether_0
-    21300002: tether_1
-    21300004: tether_2
-    21300006: tether_3
+    21300000: wood_tiles_0
+    21300002: wood_tiles_1
+    21300004: wood_tiles_2
+    21300006: wood_tiles_3
+    21300008: wood_tiles_4
+    21300010: wood_tiles_5
+    21300012: wood_tiles_6
+    21300014: wood_tiles_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -48,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 0.5
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -57,52 +61,104 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tether_0
+      name: wood_tiles_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tether_1
+      name: wood_tiles_1
       rect:
         serializedVersion: 2
-        x: 8
+        x: 20
         y: 0
-        width: 8
-        height: 8
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tether_2
+      name: wood_tiles_2
       rect:
         serializedVersion: 2
-        x: 16
+        x: 40
         y: 0
-        width: 8
-        height: 8
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: tether_3
+      name: wood_tiles_3
       rect:
         serializedVersion: 2
-        x: 24
+        x: 60
         y: 0
-        width: 8
-        height: 8
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wood_tiles_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wood_tiles_5
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wood_tiles_6
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: wood_tiles_7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
