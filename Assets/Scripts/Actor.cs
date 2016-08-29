@@ -138,6 +138,7 @@ public class Actor : MonoBehaviour {
 				
 		}
 		Debug.Log("challenge failed");
-		//Engine.singleton.ChallengeFailed();
+		Engine.singleton.ChallengeFailed();
+        GetComponent<SpriteRenderer>().enabled = false;
 	}
 }
