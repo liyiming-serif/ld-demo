@@ -1,11 +1,13 @@
 fileFormatVersion: 2
-guid: c22d2f61473af4f479a7ea97e988091d
-timeCreated: 1472342948
+guid: 95586618b59d2d741bde05b095b7d36d
+timeCreated: 1472448902
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dot_0
-    21300002: dot_1
+    21300000: tether_0
+    21300002: tether_1
+    21300004: tether_2
+    21300006: tether_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 0.5
+  spritePixelsToUnits: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
@@ -55,26 +57,52 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dot_0
+      name: tether_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3
-        height: 3
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dot_1
+      name: tether_1
       rect:
         serializedVersion: 2
-        x: 3
+        x: 8
         y: 0
-        width: 3
-        height: 3
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tether_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tether_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
