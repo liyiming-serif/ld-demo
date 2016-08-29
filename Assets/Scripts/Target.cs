@@ -23,6 +23,9 @@ public class Target : MonoBehaviour {
 		if(other.gameObject.tag == "Projectile") {
 			Die();
 		}
+		else if(other.gameObject.tag == "Player") {
+			Physics2D.IgnoreCollision(other.collider, GetComponent<Collider2D>());
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
