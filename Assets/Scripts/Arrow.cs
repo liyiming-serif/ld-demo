@@ -11,8 +11,7 @@ public class Arrow : MonoBehaviour
 
     bool hit; //flag to check if the arrow has hit anything
 
-	SpriteRenderer drawer;
-	[SerializeField] Sprite arrowLand;
+	Animator animate;
 
     AudioSource speaker;
     [SerializeField]
@@ -26,7 +25,7 @@ public class Arrow : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         hit = false;
         speaker = GetComponent<AudioSource>();
-		drawer = GetComponent<SpriteRenderer>();
+		animate = GetComponent<Animator>();
     }
 
     //control arrow's image based on trajectory. stops when arrow sticks.
@@ -56,7 +55,7 @@ public class Arrow : MonoBehaviour
         if (other.gameObject.tag == "Barrier" || other.gameObject.tag == "Target")
         {
             hit = true;
-			drawer.sprite = arrowLand;
+            animate.SetTrigger("triggerWarning");
             speaker.PlayOneShot(thunk);
             Engine.singleton.Reload(bowOrigin);
             Engine.singleton.AlertAll(other.contacts[0].point);

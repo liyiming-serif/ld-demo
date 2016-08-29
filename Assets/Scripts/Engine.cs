@@ -128,8 +128,8 @@ public class Engine : MonoBehaviour
         {
             Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
-            if (timer < 2.5f) {
-                if ((angleZ > 80 && angleZ < 180) || (angleZ < -100 && angleZ > -180))
+            if (timer < 4.5f) {
+                if ((angleZ >= 90 && angleZ <= 180) || (angleZ < -110 && angleZ > -180))
                 {   
                     AnimateBow(timer);
                     if (playersActor.dir == Actor.Face.Right)
@@ -138,7 +138,7 @@ public class Engine : MonoBehaviour
                     }
                     playersBow.PullString(frameNo, angleZ + 180);
                 }
-                else if (angleZ > -70 && angleZ < 70)
+                else if (angleZ > -70 && angleZ < 90)
                 {
                     AnimateBow(timer);
                     if (playersActor.dir == Actor.Face.Left)
@@ -177,12 +177,12 @@ public class Engine : MonoBehaviour
             Vector2 dragDistance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - playersBow.transform.position;
             float angleZ = Mathf.Atan2(dragDistance.y, dragDistance.x) * Mathf.Rad2Deg;
             float constSpeed = -4.0f;
-            if (angleZ > -70 && angleZ < 70)
+            if (angleZ > -70 && angleZ < 90)
             {
                 constSpeed = 4.0f;
             }
             timer = Mathf.Min(timer, 1.4f);
-            Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * 350.0f * (timer / 1.4f), 0);
+            Vector3 initVelocity = Quaternion.Euler(playersBow.transform.rotation.eulerAngles) * new Vector2(constSpeed * 250.0f * (timer / 1.4f), 0);
             // FireArrow
             Arrow newArrow = ((GameObject)Instantiate(Resources.Load("arrowPrefab"), playersBow.transform.position, playersBow.transform.rotation)).GetComponent<Arrow>();
             newArrow.FireArrow(initVelocity, playersBow.gameObject);
