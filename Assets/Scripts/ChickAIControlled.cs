@@ -15,6 +15,12 @@ public class ChickAIControlled : Target {
 	private Animator animate;
 	[SerializeField] private float flightSpeed;
 
+	private AudioSource speaker;
+	[SerializeField]
+	private AudioClip flySound;
+	[SerializeField]
+	private AudioClip dieSound;
+
 	// Use this for initialization
 	void Awake () {
 		actor = GetComponent<Actor>();
@@ -42,6 +48,8 @@ public class ChickAIControlled : Target {
 
 	protected override void Die()
 	{
+		
+		speaker.PlayOneShot(dieSound);
 		dead = true;
 		actor.Fly(Vector2.zero);
 		animate.SetBool("die", true);
@@ -52,6 +60,7 @@ public class ChickAIControlled : Target {
 
 	protected override void Panic(Vector2 incursion)
 	{
+		speaker.PlayOneShot(flySound);
 		if(dead == false) {
 			Vector2 traj;
 			if((transform.position.x - incursion.x) > 0)

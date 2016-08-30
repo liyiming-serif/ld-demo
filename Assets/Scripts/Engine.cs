@@ -40,6 +40,8 @@ public class Engine : MonoBehaviour
 	private GameObject[] targets;
     public int arrowsUsed;
 
+	private AudioSource speaker;
+
     // Use this for initialisation
     void Awake()
     {
@@ -50,7 +52,7 @@ public class Engine : MonoBehaviour
         numRandV = 4;
         randValues = new float[numRandV];
 		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Projectile"));
-        //Object.DontDestroyOnLoad(singleton); //game engine preserves game state between scenes
+		speaker = GetComponent<AudioSource>();
     }
 
     /** Sets the camera's offset to whatever called this function's offset

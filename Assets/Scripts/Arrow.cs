@@ -18,6 +18,8 @@ public class Arrow : MonoBehaviour
     AudioClip whiz; //sound of the arrow getting launched
     [SerializeField]
     AudioClip thunk; //sound of the arrow hitting ANY barrier
+	[SerializeField]
+	AudioClip boing;
 
     // Use this for initialization
     void Awake()
@@ -63,14 +65,14 @@ public class Arrow : MonoBehaviour
 				gameObject.transform.SetParent(other.gameObject.transform);
 			}
         }
-        if (other.gameObject.tag != "Bouncy")
-        {
-            if (body != null)
-            {
-                Destroy(body);
-                foreach (Component coll in GetComponents<Collider2D>())
-                    Destroy(coll);
-            }
-        }
+		if(other.gameObject.tag != "Bouncy") {
+			if(body != null) {
+				Destroy(body);
+				foreach(Component coll in GetComponents<Collider2D>())
+					Destroy(coll);
+			}
+		} else {
+			speaker.PlayOneShot(boing);
+		}
     }
 }
