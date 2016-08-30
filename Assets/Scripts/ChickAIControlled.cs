@@ -28,6 +28,7 @@ public class ChickAIControlled : Target {
 		if(sideCheck == null)
 			stationary = true;
 		animate = GetComponent<Animator>();
+		speaker = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -48,7 +49,6 @@ public class ChickAIControlled : Target {
 
 	protected override void Die()
 	{
-		
 		speaker.PlayOneShot(dieSound);
 		dead = true;
 		actor.Fly(Vector2.zero);
@@ -60,7 +60,6 @@ public class ChickAIControlled : Target {
 
 	protected override void Panic(Vector2 incursion)
 	{
-		speaker.PlayOneShot(flySound);
 		if(dead == false) {
 			Vector2 traj;
 			if((transform.position.x - incursion.x) > 0)
@@ -69,6 +68,7 @@ public class ChickAIControlled : Target {
 				traj = new Vector2(-flightSpeed, flightSpeed);
 			actor.Fly(traj);
 			sightTrigger.enabled = false;
+			speaker.PlayOneShot(flySound);
 			StartCoroutine(DestroySightsDelayed());
 		}
 	}
