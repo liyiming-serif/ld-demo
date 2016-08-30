@@ -145,9 +145,9 @@ public class Engine : MonoBehaviour
 			if(playersActor != null)
 			{
 				if(playersActor.dir == Actor.Face.Right)
-					playersActor.cameraOffset = new Vector2(250f,0f);
+					playersActor.cameraOffset = new Vector2(200f,0f);
 				else
-					playersActor.cameraOffset = new Vector2(-250f,0f);
+					playersActor.cameraOffset = new Vector2(-200f,0f);
 				ChangeCameraOffset(playersActor.gameObject, playersActor.cameraOffset);
 			}
         }
