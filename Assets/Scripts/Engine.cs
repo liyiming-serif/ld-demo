@@ -144,14 +144,14 @@ public class Engine : MonoBehaviour
             // Record the pos of Mouse down
             timer = 0.0f;
             listening = true;
-			if(playersActor != null)
+			/*if(playersActor != null)
 			{
 				if(playersActor.dir == Actor.Face.Right)
 					playersActor.cameraOffset = new Vector2(200f,0f);
 				else
 					playersActor.cameraOffset = new Vector2(-200f,0f);
 				ChangeCameraOffset(playersActor.gameObject, playersActor.cameraOffset);
-			}
+			}*/
         }
         else if (Input.GetMouseButton(0))
         {
